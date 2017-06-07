@@ -32,6 +32,7 @@ import java.util.Map;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
+
     private EditText et_accountname;
     private EditText et_pwd;
     private String accountname = "";
@@ -96,9 +97,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         if (Tool.isEmpty(data)) {
             try {
                 data = MyXmlSerializer.readXml(mContext,getResources().getAssets().open("Class.xml"));
-                for (int i = 0; i < data.size(); i++) {
-                    Log.e("data数据", "--" + data.get(i).getId());
-                }
             } catch (Throwable e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -164,10 +162,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         editor.putString("USER_NAME", accountname);
                         editor.putString("PASSWORD", pwd);
                         editor.commit();
-
                     }
-                    Intent intent = new Intent(LoginActivity.this, CatagoryOneActivity.class);
-                    startActivity(intent);
+                    for (int i = 0; i < data.size(); i++) {
+                        Log.e("数据信息","--"+data);
+                        if  (data.get(i).getAccountname().equals(accountname)) {
+                            Intent intent = new Intent(LoginActivity.this, CatagoryOneActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
                 } else {
                     //空状态判断
                     if (InputTextCheck.isEmpty(accountname)) {
