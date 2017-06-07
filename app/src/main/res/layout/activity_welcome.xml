@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.mdxj.activity.WelcomeActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用"
+        android:textSize="20sp"
+        android:textColor="#B7FBFB"
+        android:layout_marginTop="100dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="copyright © 2017-2018 liaoningzhongdiaoruibo"
+        android:textSize="13sp"
+        android:textColor="#CECECD"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_above="@id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="智能巡检系统"
+        android:textSize="25sp"
+        android:textColor="#32CDCD"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+</RelativeLayout>

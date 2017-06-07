@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mdxj">
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -24,8 +25,9 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
-   android:name=".DwpcApplication"
+        android:name=".DwpcApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -33,44 +35,41 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".activity.CatagoryOneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".activity.CatagoryTwoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".activity.CatagoryThreeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".activity.UpdateNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name=".activity.ImagePagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity android:name=".activity.WelcomeActivity">
+
+        </activity>
+        <activity android:name=".activity.WelcomeTwoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.CatagoryOneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-        <activity
-            android:name=".activity.CatagoryTwoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-        <activity
-            android:name=".activity.CatagoryThreeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-        <activity
-            android:name=".activity.SettingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-        <activity
-            android:name=".activity.UpdateNameActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-        <activity
-            android:name=".activity.ImagePagerActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
-
     </application>
 
 </manifest>
