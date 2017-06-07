@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
-
     private EditText et_accountname;
     private EditText et_pwd;
     private String accountname = "";
