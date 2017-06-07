@@ -3,16 +3,15 @@ package com.example.mdxj.model;
 import com.example.mdxj.DwpcApplication;
 import com.example.mdxj.util.StorageUtil;
 
+import net.tsz.afinal.FinalDb;
+import net.tsz.afinal.annotation.sqlite.Table;
+import net.tsz.afinal.annotation.sqlite.Transient;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-
-import net.tsz.afinal.FinalDb;
-import net.tsz.afinal.annotation.sqlite.Table;
-import net.tsz.afinal.annotation.sqlite.Transient;
 
 @Table(name = "picture")
 public class CatagoryThree implements Serializable{
@@ -119,9 +118,9 @@ public class CatagoryThree implements Serializable{
 	}
 	public String getStaticInfo() {
 		if (null == lat || "".equals(lat)) {
-			return "�ȴ���λ����...";
+			return "等待定位数据...";
 		}
-		return "����:" + lng + " γ��:" + lat;
+		return "经度:" + lng + " 纬度:" + lat;
 	}
 	public Boolean getIsSaved() {
 		return isSaved;

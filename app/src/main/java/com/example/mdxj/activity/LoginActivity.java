@@ -32,7 +32,6 @@ import java.util.Map;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
-
     private EditText et_accountname;
     private EditText et_pwd;
     private String accountname = "";
@@ -51,6 +50,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         init();
         doLogin();
     }
+
     private void init() {
         //获得实例对象
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);

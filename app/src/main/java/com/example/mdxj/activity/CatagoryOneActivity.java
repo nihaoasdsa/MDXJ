@@ -74,7 +74,7 @@ public class CatagoryOneActivity extends Activity {
 		
 		GpsLocation gps = new GpsLocation(this);
 		if (!gps.isGpsOpen()) {
-			showAlert("GPSδ�������Ƿ��������ã�");
+			showAlert("GPS未开启，是否马上设置？");
 		}
 		
         getList();
@@ -91,7 +91,7 @@ public class CatagoryOneActivity extends Activity {
 				adapter.changeSelectItem(position);
 				adapter.notifyDataSetChanged();
 
-				if ("��".equals(DwpcApplication.getInstance().getSettingData().getAllowAllDelete())) {
+				if ("是".equals(DwpcApplication.getInstance().getSettingData().getAllowAllDelete())) {
 					re_selectall.setVisibility(View.VISIBLE);
 				}
 				re_selectall_cancel.setVisibility(View.VISIBLE);
@@ -142,12 +142,12 @@ public class CatagoryOneActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				adapter.clearSelectItem(); 
-				if ("ȫѡ".equals(tv_selectall.getText().toString().trim())) {
+				if ("全选".equals(tv_selectall.getText().toString().trim())) {
 					int pos = 0;
 					for (CatagoryOne c : cgList) {
 	    				adapter.addSelectItem(pos++);
 					}
-					tv_selectall.setText("ȫ��ѡ");
+					tv_selectall.setText("全不选");
 				} else {
 					tv_selectall.setText("ȫѡ");
 				}
@@ -162,7 +162,7 @@ public class CatagoryOneActivity extends Activity {
 			}
 		});
 		tv_selectall = (TextView) findViewById(R.id.tv_selectall);   
-		tv_selectall.setText("ȫѡ");
+		tv_selectall.setText("全选");
 		
 		iv_operation = (ImageView) this.findViewById(R.id.iv_operation);
 	}
@@ -196,7 +196,7 @@ public class CatagoryOneActivity extends Activity {
 	private void doOperation() {
 		if (adapter.isSelecting()) {
 			if (adapter.getSelectCount() == 0) {
-				Toast.makeText(CatagoryOneActivity.this,"δѡ��ɾ����",Toast.LENGTH_SHORT).show();
+				Toast.makeText(CatagoryOneActivity.this,"未选择删除项",Toast.LENGTH_SHORT).show();
 				return;
 			}
 				
@@ -204,7 +204,7 @@ public class CatagoryOneActivity extends Activity {
 		} else {		
 			String name = DwpcApplication.getInstance().getSettingData().getPersonName();
 			if (null == name || "".equals(name)) {
-				Toast.makeText(CatagoryOneActivity.this,"����δ����",Toast.LENGTH_SHORT).show();
+				Toast.makeText(CatagoryOneActivity.this,"姓名未输入",Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
@@ -231,7 +231,7 @@ public class CatagoryOneActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		tv_title.setText("��ǰ��ҵ (" + DwpcApplication.getInstance().getSettingData().getWorkType() + ")");
+		tv_title.setText("当前作业 (" + DwpcApplication.getInstance().getSettingData().getWorkType() + ")");
 		super.onResume();
 	}
 
@@ -275,7 +275,7 @@ public class CatagoryOneActivity extends Activity {
         ll_title.setVisibility(View.VISIBLE);
 
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-        tv_title.setText("��������");
+        tv_title.setText("请输入编号");
         
         final EditText et_content = (EditText) view.findViewById(R.id.et_content);
         
@@ -310,15 +310,15 @@ public class CatagoryOneActivity extends Activity {
                 curCg.setCurChildCode(startIndex);
                 
                 if (StorageUtil.isExistName(curCg.getName())) {
-					Toast.makeText(CatagoryOneActivity.this,"����Ѵ��ڻ�ͼƬ�ļ����Ѵ��ڣ�",Toast.LENGTH_SHORT).show();
+					Toast.makeText(CatagoryOneActivity.this,"编号已存在或图片文件夹已存在！",Toast.LENGTH_SHORT).show();
 					curCg = null;
                 } else {                 
 	                int dirRe = StorageUtil.mkdirs(curCg.getFolderPath());
 	                if (dirRe == -1) {
-						Toast.makeText(CatagoryOneActivity.this,"����ͼƬ�ļ���ʧ�ܣ�",Toast.LENGTH_SHORT).show();
+						Toast.makeText(CatagoryOneActivity.this,"创建图片文件夹失败！",Toast.LENGTH_SHORT).show();
 						curCg = null;
 	                } else if (dirRe == 0) {
-						Toast.makeText(CatagoryOneActivity.this,"����Ѵ��ڻ�ͼƬ�ļ����Ѵ��ڣ�",Toast.LENGTH_SHORT).show();
+						Toast.makeText(CatagoryOneActivity.this,"编号已存在或图片文件夹已存在！",Toast.LENGTH_SHORT).show();
 						curCg = null;
 	                } else {
 	            		cgList.add(curCg); 
@@ -348,7 +348,7 @@ public class CatagoryOneActivity extends Activity {
         popInfo.showAtLocation(listView, Gravity.BOTTOM, 0, 0); 
         
         TextView tv_content1 = (TextView) popInfoView.findViewById(R.id.tv_content1);
-        tv_content1.setText("ɾ��" + adapter.getSelectCount() + "��");
+        tv_content1.setText("删除" + adapter.getSelectCount() + "项");
         
         LinearLayout ll_content1 = (LinearLayout) popInfoView.findViewById(R.id.ll_content1);
         ll_content1.setOnClickListener(new OnClickListener(){
@@ -378,13 +378,13 @@ public class CatagoryOneActivity extends Activity {
         ll_title.setVisibility(View.VISIBLE);
         
         TextView tv_title = (TextView) window.findViewById(R.id.tv_title);
-        tv_title.setText("��ʾ");
+        tv_title.setText("提示");
         
         TextView tv_content = (TextView) window.findViewById(R.id.tv_content);
         tv_content.setText(content);
 
         TextView ll_doing_ok = (TextView) window.findViewById(R.id.ll_doing_ok);
-        ll_doing_ok.setText("����");
+        ll_doing_ok.setText("设置");
         ll_doing_ok.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -408,7 +408,7 @@ public class CatagoryOneActivity extends Activity {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(), "�ٰ�һ���˳�����",
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
                         Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {

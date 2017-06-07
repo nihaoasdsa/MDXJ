@@ -19,9 +19,9 @@ public class SettingData{
     
     public SettingData() {
     	personName = "";
-    	workType = "��ѹ";
+    	workType = "低压";
     	picSize = "720 x 1280";
-    	allowAllDelete = "��";
+    	allowAllDelete = "否";
     	rootPath = "DWPC";
     	startIndex = 1;
     }
