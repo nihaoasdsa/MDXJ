@@ -1,13 +1,13 @@
 package com.example.mdxj.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,7 +16,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mdxj.R;
+import com.example.mdxj.jsonbean.XmlParam;
 import com.example.mdxj.util.InputTextCheck;
+import com.example.mdxj.util.MyXmlSerializer;
+
+import java.util.ArrayList;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -30,11 +34,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button button_clear_account, button_clear_psw;//清除按钮
     private CheckBox rem_pw;//记住密码
     private SharedPreferences sp;
-    /**
-     * 用于加载的进度跳
-     */
-    private ProgressDialog dialog;
-
+   private ArrayList<XmlParam> data=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         init();
         doLogin();
     }
-
     private void init() {
         //获得实例对象
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -55,6 +54,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         login_land.setOnClickListener(this);
         button_clear_psw.setOnClickListener(this);
         button_clear_account.setOnClickListener(this);
+
+
         //et监听事件
         et_accountname.addTextChangedListener(mLoginInputWatcher);
         et_pwd.addTextChangedListener(mPassWordInputWatcher);
@@ -80,8 +81,21 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             }
         });
+        initdata(this);
     }
+ private void initdata(Context context){
+     if (MyXmlSerializer.isEmpty(data)) {
+         try {
+             data = MyXmlSerializer.readXml(context,getResources().getAssets().open("Class.xml"));
+             for (int i = 0; i < data.size(); i++) {
+                 Log.e("data数据", "--" + data.get(i).getId());
+             }
 
+         } catch (Throwable throwable) {
+             throwable.printStackTrace();
+         }
+     }
+ }
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
         @Override
@@ -163,6 +177,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-}
+    }
 
 
