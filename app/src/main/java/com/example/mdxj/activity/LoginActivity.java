@@ -1,6 +1,7 @@
 package com.example.mdxj.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +16,19 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.example.mdxj.R;
 import com.example.mdxj.jsonbean.XmlParam;
 import com.example.mdxj.util.InputTextCheck;
 import com.example.mdxj.util.MyXmlSerializer;
+import com.example.mdxj.util.Tool;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -34,8 +42,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button button_clear_account, button_clear_psw;//清除按钮
     private CheckBox rem_pw;//记住密码
     private SharedPreferences sp;
-    private ArrayList<XmlParam> data = new ArrayList<>();
-
+   private ArrayList<XmlParam> data=new ArrayList<>();
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +51,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         init();
         doLogin();
     }
-
     private void init() {
         //获得实例对象
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -83,23 +90,23 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             }
         });
-        initdata(this);
+        initdata();
     }
-
-    private void initdata(Context context) {
-
-        try {
-            data = MyXmlSerializer.readXml(context, getResources().getAssets().open("Class.xml"));
-            for (int i = 0; i < data.size(); i++) {
-                Log.e("data数据", "--" + data.get(i).getId());
+    private void initdata() {
+        mContext = LoginActivity.this;
+        if (Tool.isEmpty(data)) {
+            try {
+                data = MyXmlSerializer.readXml(mContext,getResources().getAssets().open("Class.xml"));
+                for (int i = 0; i < data.size(); i++) {
+                    Log.e("data数据", "--" + data.get(i).getId());
+                }
+            } catch (Throwable e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
         }
 
     }
-
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
         @Override
@@ -181,6 +188,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-}
+    }
 
 

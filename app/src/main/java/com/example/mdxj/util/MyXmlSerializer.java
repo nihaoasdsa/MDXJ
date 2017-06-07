@@ -10,6 +10,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.zip.InflaterInputStream;
 
 /**
  * Created by 008 on 2017/6/7 0007.
