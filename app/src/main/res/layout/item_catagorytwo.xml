@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="2dp" >
+
+    <RelativeLayout
+        android:id="@+id/re_parent"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/btn_list_item_bg"
+        android:focusable="false" >
+
+
+    <RelativeLayout
+        android:id="@+id/re_avatar"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" >
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+        	android:layout_centerInParent="true"
+            android:src="@drawable/catagorytwo" />
+        <ImageView
+            android:id="@+id/iv_avatarL"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+			android:layout_centerVertical="true"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="19dp"
+			android:layout_marginRight="2dp"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/iv_avatarR"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+			android:layout_centerVertical="true"
+			android:layout_alignParentRight="true"
+			android:layout_marginRight="18dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/re_avatar"
+        android:text=""
+        android:singleLine="true"
+        android:maxWidth="200dp"
+        android:ellipsize="end"
+        android:textColor="#353535"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+	    android:layout_marginRight="10dp"
+       	android:layout_alignParentRight="true"
+       	android:layout_alignParentTop="true"
+        android:text=""
+        android:textColor="#AAAAAA"
+        android:textSize="14sp" />
+    
+  <ImageView
+        android:id="@+id/iv_select"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/dx_checkbox_gray_on"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/re_avatar"
+        android:orientation="horizontal"
+        android:paddingRight="30dp" >
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#AAAAAA"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_unread"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignRight="@id/re_avatar"
+        android:layout_alignTop="@id/re_avatar"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/unread_count_bg"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+    
+    <View
+	    android:layout_width="match_parent"
+	    android:layout_height="0.1dp"
+	    android:background="#dadada"
+	    android:layout_alignParentBottom="true"/>
+	</RelativeLayout>
+</RelativeLayout>
