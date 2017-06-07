@@ -34,7 +34,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button button_clear_account, button_clear_psw;//清除按钮
     private CheckBox rem_pw;//记住密码
     private SharedPreferences sp;
-   private ArrayList<XmlParam> data=new ArrayList<>();
+    private ArrayList<XmlParam> data = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         init();
         doLogin();
     }
+
     private void init() {
         //获得实例对象
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -83,19 +85,21 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         });
         initdata(this);
     }
- private void initdata(Context context){
 
-         try {
-             data = MyXmlSerializer.readXml(context,getResources().getAssets().open("Class.xml"));
-             for (int i = 0; i < data.size(); i++) {
-                 Log.e("data数据", "--" + data.get(i).getId());
-             }
+    private void initdata(Context context) {
 
-         } catch (Throwable throwable) {
-             throwable.printStackTrace();
-         }
+        try {
+            data = MyXmlSerializer.readXml(context, getResources().getAssets().open("Class.xml"));
+            for (int i = 0; i < data.size(); i++) {
+                Log.e("data数据", "--" + data.get(i).getId());
+            }
 
- }
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
         @Override
@@ -177,6 +181,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-    }
+}
 
 
