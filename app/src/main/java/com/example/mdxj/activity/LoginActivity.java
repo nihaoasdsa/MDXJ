@@ -18,11 +18,14 @@ import android.widget.Toast;
 
 
 import com.example.mdxj.R;
+import com.example.mdxj.jsonbean.XmlParam;
 import com.example.mdxj.util.InputTextCheck;
+import com.example.mdxj.util.MyXmlSerializer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,10 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button button_clear_account, button_clear_psw;//清除按钮
     private CheckBox rem_pw;//记住密码
     private SharedPreferences sp;
-    /**
-     * 用于加载的进度跳
-     */
-    private ProgressDialog dialog;
+   private ArrayList<XmlParam> data=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         login_land.setOnClickListener(this);
         button_clear_psw.setOnClickListener(this);
         button_clear_account.setOnClickListener(this);
+
+
         //et监听事件
         et_accountname.addTextChangedListener(mLoginInputWatcher);
         et_pwd.addTextChangedListener(mPassWordInputWatcher);
@@ -86,8 +88,21 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             }
         });
+        initdata(this);
     }
+ private void initdata(Context context){
+     if (MyXmlSerializer.isEmpty(data)) {
+         try {
+             data = MyXmlSerializer.readXml(context,getResources().getAssets().open("Class.xml"));
+             for (int i = 0; i < data.size(); i++) {
+                 Log.e("data数据", "--" + data.get(i).getId());
+             }
 
+         } catch (Throwable throwable) {
+             throwable.printStackTrace();
+         }
+     }
+ }
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
         @Override
