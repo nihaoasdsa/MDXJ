@@ -1,51 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <database name="mengdong">
-      <table name="informat">
+      <table name="mengdong_bak">
     <column name="id">0</column>
         <column name="accountname">李四wu</column>
-
+        <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">1</column>
     <column name="accountname">李四6</column>
-
-  </table>
-  <table name="informat">
-    <column name="id">2</column>
-    <column name="accountname">全部分类</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
+    <column name="id">2</column>
+    <column name="accountname">李六</column>
+    <column name="accountpsw">123456</column>
+  </table>
+  <table name="mengdong_bak">
     <column name="id">3</column>
     <column name="accountname">李四</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">4</column>
     <column name="accountname">张三</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">5</column>
     <column name="accountname">赵五</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">6</column>
     <column name="accountname">王六</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">7</column>
     <column name="accountname">董大</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">8</column>
     <column name="accountname">小李</column>
     <column name="accountpsw">123456</column>
   </table>
-  <table name="informat">
+  <table name="mengdong_bak">
     <column name="id">9</column>
     <column name="accountname">小王</column>
     <column name="accountpsw">123456</column>

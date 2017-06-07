@@ -91,7 +91,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         initdata(this);
     }
  private void initdata(Context context){
-     if (MyXmlSerializer.isEmpty(data)) {
+
          try {
              data = MyXmlSerializer.readXml(context,getResources().getAssets().open("Class.xml"));
              for (int i = 0; i < data.size(); i++) {
@@ -101,7 +101,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
          } catch (Throwable throwable) {
              throwable.printStackTrace();
          }
-     }
+
  }
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
