@@ -2,16 +2,15 @@ package com.example.mdxj.model;
 
 import com.example.mdxj.DwpcApplication;
 
+import net.tsz.afinal.FinalDb;
+import net.tsz.afinal.annotation.sqlite.Table;
+import net.tsz.afinal.annotation.sqlite.Transient;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-
-import net.tsz.afinal.FinalDb;
-import net.tsz.afinal.annotation.sqlite.Table;
-import net.tsz.afinal.annotation.sqlite.Transient;
 
 @Table(name = "zuobiao")
 public class CatagoryTwo implements Serializable{
@@ -91,22 +90,22 @@ public class CatagoryTwo implements Serializable{
 		return type + "_" + code;
 	}
 	public String getStaticInfo() {
-		String info = this.childList.size() + "����Ƭ";
+		String info = this.childList.size() + "张照片";
 		if (null != lat && !"".equals(lat)) {
-			String s2 = " ����:" + lng + " γ��:" + lat;
-			
+			String s2 = " 经度:" + lng + " 纬度:" + lat;
+
 			for (CatagoryThree c : childList) {
 				if (null == c.getLat() || "".equals(c.getLat())) {
-					s2 = "  �ȴ���λ����";
+					s2 = "  等待定位数据";
 					break;
 				}
 			}
-			
+
 			info += s2;
 		} else {
-			info += "  �ȴ���λ����";
+			info += "  等待定位数据";
 		}
-		
+
 		return info;
 	}
 	public void setCurChildCode(int code) {

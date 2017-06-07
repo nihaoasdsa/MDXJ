@@ -1,5 +1,13 @@
 package com.example.mdxj.model;
 
+import com.example.mdxj.DwpcApplication;
+import com.example.mdxj.util.StorageUtil;
+
+import net.tsz.afinal.FinalDb;
+import net.tsz.afinal.annotation.sqlite.Table;
+import net.tsz.afinal.annotation.sqlite.Transient;
+import net.tsz.afinal.db.sqlite.DbModel;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,17 +17,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-
-import android.os.Environment;
-
-import com.example.mdxj.DwpcApplication;
-import com.example.mdxj.util.StorageUtil;
-
-import net.tsz.afinal.FinalDb;
-import net.tsz.afinal.annotation.sqlite.Table;
-import net.tsz.afinal.annotation.sqlite.Transient;
-import net.tsz.afinal.db.sqlite.DbModel;
 
 @Table(name = "work")
 public class CatagoryOne implements Serializable{
@@ -80,14 +77,14 @@ public class CatagoryOne implements Serializable{
 		return type + "_" + code;
 	}
 	public String getStaticInfo() {
-		String info = this.childList.size() + "������";
+		String info = this.childList.size() + "个坐标";
 		
 		int picCnt = 0;
 		for (CatagoryTwo c : childList) {
 			picCnt += c.getChildList().size();
 		}
 		
-		info += " " + picCnt + "����Ƭ";
+		info += " " + picCnt + "张照片";
 		
 		return info;
 	}
@@ -172,7 +169,7 @@ public class CatagoryOne implements Serializable{
 		File csvDir = new File(folderPath);
 		if (!csvDir.exists()) {
 			if (!csvDir.mkdirs()) {
-				return "�ļ��С�" + folderPath + "������ʧ�ܡ�";
+				return "文件夹【" + folderPath + "】创建失败。";
 			} 
 		}		
 		
@@ -181,7 +178,7 @@ public class CatagoryOne implements Serializable{
 		
 		File file = StorageUtil.createFile(csvFileName);
 		if (null == file) {
-			return "�ļ���" + csvFileName + "������ʧ�ܡ�";
+			return "文件【" + csvFileName + "】创建失败。";
 		}
 		
 		String content = "";

@@ -90,7 +90,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         try {
             data = MyXmlSerializer.readXml(context, getResources().getAssets().open("Class.xml"));
             for (int i = 0; i < data.size(); i++) {
-                Log.e("data数据", "--" + data.get(i).getId());
+                Log.e("data数据", "--" + data.get(i).getAccountname());
             }
 
         } catch (Throwable throwable) {
