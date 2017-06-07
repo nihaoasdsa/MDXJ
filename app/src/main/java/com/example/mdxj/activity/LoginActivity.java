@@ -166,7 +166,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     for (int i = 0; i < data.size(); i++) {
                         Log.e("数据信息","--"+data);
                         if  (data.get(i).getAccountname().equals(accountname)) {
-                            Intent intent = new Intent(LoginActivity.this, CatagoryOneActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, VoltageActivity.class);
                             startActivity(intent);
                         }
                     }
