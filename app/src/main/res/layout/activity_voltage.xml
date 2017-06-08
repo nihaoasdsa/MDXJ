@@ -44,7 +44,7 @@
         android:layout_marginTop="10dp"
         android:background="#F0F0F0"
         android:padding="10dp"
-        android:id="@+id/low_tension"
+        android:id="@+id/low_voltage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -78,7 +78,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/caid__03"/>
+            android:src="@drawable/caid__22"/>
         <TextView
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/caid__03"/>
+            android:src="@drawable/caid__65"/>
         <TextView
             android:layout_weight="1"
             android:layout_width="wrap_content"

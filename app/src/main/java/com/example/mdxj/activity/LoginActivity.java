@@ -1,7 +1,6 @@
 package com.example.mdxj.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,19 +15,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.example.mdxj.R;
 import com.example.mdxj.jsonbean.XmlParam;
 import com.example.mdxj.util.InputTextCheck;
 import com.example.mdxj.util.MyXmlSerializer;
 import com.example.mdxj.util.Tool;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 //登录页面，jiangpan
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -165,6 +158,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         if  (data.get(i).getAccountname().equals(accountname)) {
                             Intent intent = new Intent(LoginActivity.this, VoltageActivity.class);
                             startActivity(intent);
+                            LoginActivity.this.finish();
                         }
                     }
 
