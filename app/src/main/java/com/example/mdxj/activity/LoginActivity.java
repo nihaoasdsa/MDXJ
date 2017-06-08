@@ -113,14 +113,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
         }
-
         @Override
         public void afterTextChanged(Editable s) {
             if (et_accountname.getText().toString() != null && et_accountname.getText().toString().equals("")) {
                 button_clear_account.setVisibility(View.INVISIBLE);//显示
             } else {
                 button_clear_account.setVisibility(View.VISIBLE);//隐藏
-
             }
         }
     };
@@ -142,7 +140,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         }
     };
-
     private void doLogin() {
         accountname = et_accountname.getText().toString().trim();
         pwd = et_pwd.getText().toString().trim();
