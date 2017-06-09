@@ -44,7 +44,16 @@
 			android:text="坐标"
 			android:textColor="#ffffff"
 			android:textSize="18sp" />
-
+		<ImageView
+			android:id="@+id/iv_map"
+			android:paddingBottom="5dp"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:paddingTop="5dp"
+			android:src="@mipmap/map"
+			android:layout_alignParentRight="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
 		<RelativeLayout
 			android:id="@+id/re_gps"
 			android:layout_width="wrap_content"

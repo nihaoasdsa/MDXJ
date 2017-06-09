@@ -58,7 +58,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         button_clear_psw.setOnClickListener(this);
         button_clear_account.setOnClickListener(this);
 
-
         //et监听事件
         et_accountname.addTextChangedListener(mLoginInputWatcher);
         et_pwd.addTextChangedListener(mPassWordInputWatcher);
@@ -175,11 +174,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     } else if (InputTextCheck.isEmpty(pwd)) {
                         Toast.makeText(LoginActivity.this, InputTextCheck.PASS_WORD, Toast.LENGTH_LONG).show();
                     } else {
-
                     }
-
                 }
-
+                break;
+            case R.id.button_clear_account:
+                et_accountname.setText("");
+                break;
+            case R.id.button_clear_psw:
+                et_pwd.setText("");
                 break;
         }
     }

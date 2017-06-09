@@ -44,7 +44,7 @@
             android:text="坐标"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-        
+  
 	    <RelativeLayout
 	        android:id="@+id/re_gps"
 	        android:layout_width="wrap_content"

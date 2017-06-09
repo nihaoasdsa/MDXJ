@@ -109,19 +109,21 @@ public class CatagoryOneActivity extends Activity {
     private void init() {
         intent = getIntent();
         voltage = intent.getStringExtra("voltage");
-        ID = intent.getExtras().getInt("ID");
+        ID=intent.getExtras().getInt("ID");
         if ("2018".equals(DateUtils.getCurrentYear())) {
             finish();
             return;
         }
+
         GpsLocation gps = new GpsLocation(this);
         if (!gps.isGpsOpen()) {
             showAlert("GPS未开启，是否马上设置？");
         }
+
         getList();
+
         initView();
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("当前作业 (" + voltage + ")");
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new OnClickListener() {
             @Override
