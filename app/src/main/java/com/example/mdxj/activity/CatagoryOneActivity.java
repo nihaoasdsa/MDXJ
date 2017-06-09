@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -253,8 +252,8 @@ public class CatagoryOneActivity extends Activity {
     private void getList() {
         DwpcApplication.getInstance().initData(voltage);
         cgList = DwpcApplication.getInstance().getCatagoryOneList();
-        Log.e("数据","---"+cgList.size());
-        Log.e("数据","---"+cgList.get(0).getName());
+//        Log.e("数据","---"+cgList.size());
+//        Log.e("数据","---"+cgList.get(0).getName());
 
     }
 
