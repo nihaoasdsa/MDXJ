@@ -62,6 +62,7 @@ public class CatagoryOneActivity extends Activity {
     private Intent intent;
     private String voltage;
     private int ID;
+    private ImageView iv_map;//地图图标
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +92,14 @@ public class CatagoryOneActivity extends Activity {
             }
         });
         listView = (ListView) findViewById(R.id.list);
+        iv_map= (ImageView) findViewById(R.id.iv_map);
+        iv_map.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatagoryOneActivity.this, LocationModeSourceActivity_Old.class);
+              startActivity(intent);
+            }
+        });
         listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override
