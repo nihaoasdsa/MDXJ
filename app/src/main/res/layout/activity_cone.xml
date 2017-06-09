@@ -140,4 +140,10 @@
         android:background="@android:color/transparent"
         android:divider="@null"
         />
+	<ProgressBar
+		android:visibility="gone"
+		android:id="@+id/site_pb_load"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true" />
 </RelativeLayout>

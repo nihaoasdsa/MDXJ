@@ -1,33 +1,34 @@
 package com.example.mdxj.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.mdxj.DwpcApplication;
 import com.example.mdxj.R;
 import com.example.mdxj.adapter.ListDialogAdapter;
 import com.example.mdxj.model.SettingData;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SettingActivity extends Activity {
 
@@ -48,7 +49,7 @@ public class SettingActivity extends Activity {
     private static final int UPDATE_NAME = 1;
     
     private SettingData sd = null;
-
+    private SharedPreferences sp;
     private int curWorkTypeSelected = 0;
     private int curPicSizeSelected = 0;
     private int curDeleteAllSelected = 0;
@@ -61,7 +62,7 @@ public class SettingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        
+        sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         if (sd == null) {
         	sd = DwpcApplication.getInstance().getSettingData();
         }
@@ -130,7 +131,8 @@ public class SettingActivity extends Activity {
         	curDeleteAllSelected++;
         }
 
-        tv_name.setText(sd.getPersonName());
+//        tv_name.setText(sd.getPersonName());
+        tv_name.setText(sp.getString("USER_NAME", ""));
         tv_worktype.setText(sd.getWorkType());
         tv_deleteall.setText(sd.getAllowAllDelete());
         tv_picsize.setText(sd.getPicSize());
@@ -192,11 +194,11 @@ public class SettingActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.re_name:
-                Intent iN = new Intent(SettingActivity.this,
-                        UpdateNameActivity.class);
-                iN.putExtra("OriName", sd.getPersonName());
-                
-                startActivityForResult(iN, UPDATE_NAME);
+//                Intent iN = new Intent(SettingActivity.this,
+//                        UpdateNameActivity.class);
+//                iN.putExtra("OriName", sd.getPersonName());
+//
+//                startActivityForResult(iN, UPDATE_NAME);
                 break;
             case R.id.re_worktype:
                 showWorkTypeDialog();
@@ -359,7 +361,8 @@ public class SettingActivity extends Activity {
                 if (data != null && data.hasExtra("NewName")) {
                     String name = (String) data.getSerializableExtra("NewName");
                     sd.setPersonName(name);
-                    tv_name.setText(sd.getPersonName());
+//                    tv_name.setText(sd.getPersonName());
+                    tv_name.setText(sp.getString("USER_NAME", ""));
                 } 
                 break;
             }
