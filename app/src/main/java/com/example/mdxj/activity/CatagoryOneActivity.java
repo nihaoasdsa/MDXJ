@@ -71,6 +71,7 @@ public class CatagoryOneActivity extends Activity {
     private int ID;
     private ProgressBar progressBar;
     private CustomProgressDialog dialog;
+    private ImageView iv_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,16 @@ public class CatagoryOneActivity extends Activity {
         initView();
         tv_title = (TextView) findViewById(R.id.tv_title);
         iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_map = (ImageView) findViewById(R.id.iv_map);
+        iv_map.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatagoryOneActivity.this, LocationModeSourceActivity_Old.class);
+
+            startActivity(intent);
+            }
+        });
+
         iv_back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
