@@ -178,6 +178,7 @@ public class CatagoryOneActivity extends Activity {
 //
 //            }
 //        }
+        if(cgList!=null)
         adapter = new CatagoryOneAdapter(this, cgList);
         listView.setAdapter(adapter);
         dialog.dismiss();
