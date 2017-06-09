@@ -106,24 +106,24 @@ public class DwpcApplication extends Application {
     }
 
     public List<CatagoryOne> getCatagoryOneList() {
-        for (int i = 0; i < cgList.size(); i++) {
-            String m = cgList.get(i).getName();
-            String name = m.substring(0, 2);
-            String code = m.substring(m.lastIndexOf("_") + 1);
-            String time=cgList.get(i).getDate();
-            if (voltage.equals(cgList.get(i).getType())) {
-                CatagoryOne co = new CatagoryOne();
-                co.setType(name);
-                co.setCode(code);
-                co.setDate(time);
-                cgList2.add(co);
-                return cgList2;
-            } else {
-                return null;
-            }
-        }
-
-        return null;
+//        for (int i = 0; i < cgList.size(); i++) {
+//            String m = cgList.get(i).getName();
+//            String name = m.substring(0, 2);
+//            String code = m.substring(m.lastIndexOf("_") + 1);
+//            String time=cgList.get(i).getDate();
+//            if (voltage.equals(cgList.get(i).getType())) {
+//                CatagoryOne co = new CatagoryOne();
+//                co.setType(name);
+//                co.setCode(code);
+//                co.setDate(time);
+//                cgList2.add(co);
+                return cgList;
+//            } else {
+//                return null;
+//            }
+//        }
+//
+//        return null;
     }
 
 
