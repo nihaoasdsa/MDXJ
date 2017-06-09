@@ -34,8 +34,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button button_clear_account, button_clear_psw;//清除按钮
     private CheckBox rem_pw;//记住密码
     private SharedPreferences sp;
-   private ArrayList<XmlParam> data=new ArrayList<>();
+    private ArrayList<XmlParam> data = new ArrayList<>();
     private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +86,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         });
         initdata();
     }
+
     private void initdata() {
         mContext = LoginActivity.this;
         if (Tool.isEmpty(data)) {
             try {
-                data = MyXmlSerializer.readXml(mContext,getResources().getAssets().open("Class.xml"));
+                data = MyXmlSerializer.readXml(mContext, getResources().getAssets().open("Class.xml"));
             } catch (Throwable e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -97,6 +99,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
 
     }
+
     //et的监听事件
     private TextWatcher mLoginInputWatcher = new TextWatcher() {
         @Override
@@ -106,6 +109,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
         }
+
         @Override
         public void afterTextChanged(Editable s) {
             if (et_accountname.getText().toString() != null && et_accountname.getText().toString().equals("")) {
@@ -133,6 +137,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         }
     };
+
     private void doLogin() {
         accountname = et_accountname.getText().toString().trim();
         pwd = et_pwd.getText().toString().trim();
@@ -154,14 +159,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         editor.commit();
                     }
                     for (int i = 0; i < data.size(); i++) {
-                        Log.e("数据信息","--"+data);
-                        if  (data.get(i).getAccountname().equals(accountname)) {
+                        Log.e("数据信息", "--" + data);
+                        if (data.get(i).getAccountname().equals(accountname)) {
                             Intent intent = new Intent(LoginActivity.this, VoltageActivity.class);
                             startActivity(intent);
                             LoginActivity.this.finish();
                         }
                     }
-
                 } else {
                     //空状态判断
                     if (InputTextCheck.isEmpty(accountname)) {
@@ -181,6 +185,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
 
-    }
+}
 
 

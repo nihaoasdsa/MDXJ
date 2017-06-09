@@ -1,9 +1,5 @@
 package com.example.mdxj.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +11,9 @@ import android.widget.TextView;
 
 import com.example.mdxj.R;
 import com.example.mdxj.model.CatagoryOne;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressLint("InflateParams")
 public class CatagoryOneAdapter extends BaseAdapter {
@@ -56,7 +55,6 @@ public class CatagoryOneAdapter extends BaseAdapter {
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_catagoryone, null);
-            
             holder = new ViewHolder();
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_unread = (TextView) convertView.findViewById(R.id.tv_unread);
@@ -76,11 +74,11 @@ public class CatagoryOneAdapter extends BaseAdapter {
         holder.tv_time.setText(cg.getDate());
         holder.tv_content.setText(cg.getStaticInfo());
 
-        if (cg.getChildList().size() > 0) {
-            holder.iv_avatar.setImageResource(R.drawable.folder_open);
-        } else {
-            holder.iv_avatar.setImageResource(R.drawable.folder_close);
-        }
+//        if (cg.getChildList().size() > 0) {
+//            holder.iv_avatar.setImageResource(R.drawable.folder_open);
+//        } else {
+//            holder.iv_avatar.setImageResource(R.drawable.folder_close);
+//        }
         
         if (isSelecting) {
         	holder.iv_select.setVisibility(View.VISIBLE);
