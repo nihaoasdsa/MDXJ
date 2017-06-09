@@ -49,6 +49,12 @@ public class LocationModeSourceActivity_Old extends Activity implements Location
 	private ImageView iv_lm_back;
 	Bitmap bm1,bm2;
 	Canvas canvas = null;
+	/**
+	 * 图片数组
+	 * **/
+	int[] images = { R.drawable.start, R.drawable.end,
+			R.drawable.ic_launcher, R.drawable.caid__06, R.drawable.caid__03,
+			R.drawable.ic_launcher, };
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -292,8 +298,7 @@ public class LocationModeSourceActivity_Old extends Activity implements Location
 			ImageView imageView = (ImageView) view.findViewById(R.id.badge);
 			imageView.setImageResource(R.drawable.badge_wa);
 		String title = marker.getTitle();
-      Log.e("11111","---"+marker.getIcons());
-		ArrayList<BitmapDescriptor> img=marker.getIcons();
+        Log.e("11111","---"+marker.getIcons());
 		TextView titleUi = ((TextView) view.findViewById(R.id.title));
 		if (title != null) {
 			SpannableString titleText = new SpannableString(title);

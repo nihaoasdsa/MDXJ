@@ -239,7 +239,8 @@ public class CatagoryOneActivity extends Activity {
     }
 
     private void getList() {
-        DwpcApplication.getInstance().initData();
+        DwpcApplication.getInstance().initData(voltage);
+        DwpcApplication.getInstance().initData(voltage);
 
         cgList = DwpcApplication.getInstance().getCatagoryOneList();
     }
@@ -262,7 +263,6 @@ public class CatagoryOneActivity extends Activity {
                 Toast.makeText(CatagoryOneActivity.this, "姓名未输入", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             showCodeDialog();
         }
     }
