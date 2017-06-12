@@ -253,7 +253,8 @@ public class CatagoryOneActivity extends Activity {
     private void getList() {
         DwpcApplication.getInstance().initData(voltage);
         cgList = DwpcApplication.getInstance().getCatagoryOneList();
-
+//        Log.e("数据","---"+cgList.size());
+//        Log.e("数据","---"+cgList.get(0).getName());
 
     }
 
