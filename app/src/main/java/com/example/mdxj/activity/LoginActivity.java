@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.mdxj.R;
@@ -36,7 +39,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private SharedPreferences sp;
     private ArrayList<XmlParam> data = new ArrayList<>();
     private Context mContext;
-
+  private ImageView ivshow;//眼睛图标
+    private LinearLayout linearpassword;
+    private boolean isShow = true;// 密码显示开关
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +58,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         login_land = (Button) findViewById(R.id.login_land);
         button_clear_account = (Button) findViewById(R.id.button_clear_account);
         button_clear_psw = (Button) findViewById(R.id.button_clear_psw);
+        ivshow= (ImageView) findViewById(R.id.ivshow);
+        linearpassword= (LinearLayout) findViewById(R.id.linearpassword);
         rem_pw = (CheckBox) findViewById(R.id.cb_mima);
         login_land.setOnClickListener(this);
         button_clear_psw.setOnClickListener(this);
         button_clear_account.setOnClickListener(this);
-
+        linearpassword.setOnClickListener(this);
         //et监听事件
         et_accountname.addTextChangedListener(mLoginInputWatcher);
         et_pwd.addTextChangedListener(mPassWordInputWatcher);
@@ -85,7 +92,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         });
         initdata();
     }
-
+//读取数据信息学
     private void initdata() {
         mContext = LoginActivity.this;
         if (Tool.isEmpty(data)) {
@@ -112,9 +119,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         @Override
         public void afterTextChanged(Editable s) {
             if (et_accountname.getText().toString() != null && et_accountname.getText().toString().equals("")) {
-                button_clear_account.setVisibility(View.INVISIBLE);//显示
+                button_clear_account.setVisibility(View.INVISIBLE);//隐藏
             } else {
-                button_clear_account.setVisibility(View.VISIBLE);//隐藏
+                button_clear_account.setVisibility(View.VISIBLE);//显示
+                et_accountname.setSelection(et_accountname.getText().length());
             }
         }
     };
@@ -133,6 +141,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 button_clear_psw.setVisibility(View.INVISIBLE);//隐藏
             } else {
                 button_clear_psw.setVisibility(View.VISIBLE);//显示
+                et_pwd.setSelection(et_pwd.getText().length());
+
             }
         }
     };
@@ -158,13 +168,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         editor.commit();
                     }
                     for (int i = 0; i < data.size(); i++) {
-                        Log.e("数据信息", "--" + data);
-                        if (data.get(i).getAccountname().equals(accountname)) {
+                        //进行判断符合以后才可以登录
+                        if (data.get(i).getAccountname().equals(accountname)&&data.get(i).getAccountpsw().equals(pwd)) {
                             Intent intent = new Intent(LoginActivity.this, VoltageActivity.class);
                             startActivity(intent);
                             LoginActivity.this.finish();
                         }
+                        else {
+                         //   Toast.makeText(LoginActivity.this, InputTextCheck.ERROR_MSG, Toast.LENGTH_LONG).show();
+                        }
                     }
+
                 } else {
                     //空状态判断
                     if (InputTextCheck.isEmpty(accountname)) {
@@ -182,6 +196,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.button_clear_psw:
                 et_pwd.setText("");
+                break;
+            case R.id.linearpassword:
+                if (isShow){
+                    isShow=false;
+                    et_pwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    ivshow.setBackgroundResource(R.mipmap.zhengyan);
+                }else {
+                    isShow=true;
+                    et_pwd.setInputType(InputType.TYPE_CLASS_TEXT
+                            | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    ivshow.setBackgroundResource(R.mipmap.biyan);
+                }
                 break;
         }
     }

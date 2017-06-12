@@ -8,6 +8,7 @@ import java.util.List;
 public class InputTextCheck {
     public static String Per_NOT_NULL = "用户名不能为空！";
     public static String PASS_WORD="密码不能为空！";
+    public  static String ERROR_MSG="用户名或密码错误！";
     /**
      * 非空验证
      *

@@ -1,18 +1,23 @@
 package com.example.mdxj.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -292,7 +297,21 @@ public class CatagoryThreeActivity extends Activity {
 		re_operation_photo.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				doPhoto();
+				//在Android 6.0 以后的系统中授权管理已经，动态加入打开照相权限。
+				if (Build.VERSION.SDK_INT >= 23) {
+					int checkCallPhonePermission = ContextCompat.checkSelfPermission(CatagoryThreeActivity.this, Manifest.permission.CAMERA);
+					if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
+						ActivityCompat.requestPermissions(CatagoryThreeActivity.this,new String[]{Manifest.permission.CAMERA},222);
+						return;
+					}else{
+
+						doPhoto();//调用具体方法
+					}
+				} else {
+
+					doPhoto();//调用具体方法
+				}
+
 			}
 		});
 
@@ -437,7 +456,7 @@ public class CatagoryThreeActivity extends Activity {
 			c3.save();
 		}
 	}
-
+//长按弹出底部删除数据
 	private void showPopInfo() {
 		if (popInfo != null && popInfo.isShowing()) {
 			return;
@@ -523,12 +542,10 @@ public class CatagoryThreeActivity extends Activity {
 					int width = DwpcApplication.getInstance().getSettingData().getPicWidth();
 					int height = DwpcApplication.getInstance().getSettingData().getPicHeight();
 					Bitmap photo = null;
-
 					if (width != -1) {
 						photo = StorageUtil.convertToBitmapNew(imagepath, width, height);
 						StorageUtil.saveBitmap(imagepath, photo);
 					}
-
 					photo = StorageUtil.convertToBitmap(imagepath, 200, 200);
 					photo = StorageUtil.centerSquareScaleBitmap(photo, 120);
 
@@ -536,9 +553,7 @@ public class CatagoryThreeActivity extends Activity {
 
 					String thumbnailPath = ((Context)this).getFilesDir().getPath()+"/"+ "thb_"+thumbImageName;
 					thumbnailPath = StorageUtil.saveBitmap(thumbnailPath, photo);
-
 					curCT.setThumbnailBigPath(thumbnailPath);
-
 					Bitmap photoS = StorageUtil.convertToBitmap(imagepath, 32, 32);
 					photoS = StorageUtil.centerSquareScaleBitmap(photo, 24);
 
@@ -564,6 +579,26 @@ public class CatagoryThreeActivity extends Activity {
 			curCT = null;
 		}
 	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		switch (requestCode) {
+			//就像onActivityResult一样这个地方就是判断你是从哪来的。
+			case 222:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// Permission Granted
+				 doPhoto();
+				} else {
+					// Permission Denied
+					Toast.makeText(CatagoryThreeActivity.this, "很遗憾你把相机权限禁用了。请务必开启相机权限享受我们提供的服务吧。", Toast.LENGTH_SHORT)
+							.show();
+				}
+				break;
+			default:
+				super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
+	}
+
 
 	public void back(View view) {
 		boolean isUnSaved = isDeleting;
