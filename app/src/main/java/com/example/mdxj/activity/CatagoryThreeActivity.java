@@ -273,8 +273,21 @@ public class CatagoryThreeActivity extends Activity {
 
 		adapter = new CatagoryThreeAdapter(this, cgList);
 		listView.setAdapter(adapter);
+		//打开定位权限
+		if (Build.VERSION.SDK_INT >= 23) {
+			int checkCallPhonePermission = ContextCompat.checkSelfPermission(CatagoryThreeActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION);
+			if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
+				ActivityCompat.requestPermissions(CatagoryThreeActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},333);
+				return;
+			}else{
 
-		startGps();
+				startGps();//调用具体方法
+			}
+		} else {
+
+			startGps();//调用具体方法
+		}
+
 	}
 
 	@Override
@@ -384,7 +397,7 @@ public class CatagoryThreeActivity extends Activity {
 			showPopInfo();
 		}
 	}
-
+//照片开启
 	private void doPhoto() {
 		try {
 			if (!StorageUtil.isExternalMemoryAvailable()) {
@@ -421,11 +434,8 @@ public class CatagoryThreeActivity extends Activity {
 
 	private void doSave() {
 		stopGps();
-
 		isDeleting = false;
-
 		save();
-
 		Intent intent = new Intent();
 		intent.putExtra("CatagoryTwo", parent);
 		setResult(RESULT_OK, intent);
@@ -435,12 +445,10 @@ public class CatagoryThreeActivity extends Activity {
 
 	private void doDelete() {
 		List<CatagoryThree> cgListDeleted = new ArrayList<CatagoryThree>();
-
 		for (int i = 0; i < adapter.getSelectCount(); i++) {
 			int sel = adapter.getSelectItem(i);
 			cgListDeleted.add(cgList.get(sel));
 		}
-
 		for (CatagoryThree c : cgListDeleted) {
 			c.delete();
 			cgList.remove(c);
@@ -579,7 +587,10 @@ public class CatagoryThreeActivity extends Activity {
 			curCT = null;
 		}
 	}
-
+/***
+ *
+ *
+ * **/
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		switch (requestCode) {
@@ -591,6 +602,16 @@ public class CatagoryThreeActivity extends Activity {
 				} else {
 					// Permission Denied
 					Toast.makeText(CatagoryThreeActivity.this, "很遗憾你把相机权限禁用了。请务必开启相机权限享受我们提供的服务吧。", Toast.LENGTH_SHORT)
+							.show();
+				}
+				break;
+			case 333:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// Permission Granted
+					startGps();
+				} else {
+					// Permission Denied
+					Toast.makeText(CatagoryThreeActivity.this, "很遗憾你把定位权限禁用了。请务必开启相机权限享受我们提供的服务吧。", Toast.LENGTH_SHORT)
 							.show();
 				}
 				break;
