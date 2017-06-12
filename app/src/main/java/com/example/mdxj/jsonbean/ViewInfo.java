@@ -2,23 +2,23 @@ package com.example.mdxj.jsonbean;
 
 public class ViewInfo {	
 	private String name;
-	private String image;
+	private int image;
 	private float lat;//经度
 	private float lng;//纬度
 
 
-	public ViewInfo(String name, float lat, float lng) {
+	public ViewInfo(int image,String name, float lat, float lng) {
 		super();
 		this.name = name;
 		this.lat = lat;
 		this.lng = lng;
 	}
 
-	public String getImage() {
+	public int getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(int image) {
 		this.image = image;
 	}
 	public String getName() {
