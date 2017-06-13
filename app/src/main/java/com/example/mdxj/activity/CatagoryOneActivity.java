@@ -40,6 +40,8 @@ import com.example.mdxj.model.CatagoryTwo;
 import com.example.mdxj.util.DateUtils;
 import com.example.mdxj.util.StorageUtil;
 import com.example.mdxj.view.CustomProgressDialog;
+import com.example.mdxj.view.MyAlertDialog;
+import com.example.mdxj.view.MyEditTextDialog;
 
 import java.util.ArrayList;
 import java.util.List;

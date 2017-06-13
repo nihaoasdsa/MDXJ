@@ -510,7 +510,6 @@ public class CatagoryTwoActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            stopGps();
             Intent intent = new Intent();
             intent.putExtra("CatagoryOne", parent);
             setResult(RESULT_OK, intent);
