@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DwpcApplication extends Application {
-
     public static Context applicationContext;
     private static DwpcApplication instance;
 
@@ -38,9 +37,7 @@ public class DwpcApplication extends Application {
         applicationContext = this;
         instance = this;
         DBCopyUtil.getInstance().copyToPackage("sycx", R.raw.sycx);
-
         sd.init(applicationContext);
-
         initImageLoader(getApplicationContext());
     }
 
@@ -66,7 +63,6 @@ public class DwpcApplication extends Application {
     }
 
     private void initImageLoader(Context context) {
-
         DisplayImageOptions mOptions = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.onloading)
                 .showImageForEmptyUri(R.drawable.onfail)
@@ -87,45 +83,44 @@ public class DwpcApplication extends Application {
     public void initData(String voltage) {
         this.voltage = voltage;
         cgList = getDb().findAll(CatagoryOne.class);
-
         String strWhere = "";
         for (CatagoryOne c1 : cgList) {
             strWhere = "parentId = '" + c1.getId() + "'";
-
             List<CatagoryTwo> c2List = getDb().findAllByWhere(CatagoryTwo.class, strWhere);
             c1.setChildList((ArrayList<CatagoryTwo>) c2List);
-
             for (CatagoryTwo c2 : c2List) {
                 strWhere = "parentId = '" + c2.getId() + "'";
-
                 List<CatagoryThree> c3List = getDb().findAllByWhere(CatagoryThree.class, strWhere);
                 c2.setChildList((ArrayList<CatagoryThree>) c3List);
             }
 
         }
     }
-
     public List<CatagoryOne> getCatagoryOneList() {
-//        cgList2.clear();
-//        for (int i = 0; i < cgList.size(); i++) {
-//            String m = cgList.get(i).getName();
-//            String name = m.substring(0, 2);
-//            String code = m.substring(m.lastIndexOf("_") + 1);
-//            String time=cgList.get(i).getDate();
-//            CatagoryOne co = new CatagoryOne();
-//            if (voltage.equals(cgList.get(i).getType())) {
-//
-//                co.setType(name);
-//                co.setCode(code);
-//                co.setDate(time);
-//                cgList2.add(co);
-//
-//            } else {
-//               // return null;
-//            }
-//        }
+        cgList2.clear();
+        for (CatagoryOne c1 : cgList) {
+            String m = c1.getName();
+            String name = m.substring(0, 2);
+            String code = m.substring(m.lastIndexOf("_") + 1);
+            String time=c1.getDate();
+            if (voltage.equals(c1.getType())) {
+                c1.setType(name);
+                c1.setCode(code);
+                c1.setDate(time);
+                String strWhere = "";
+                strWhere = "parentId = '" + c1.getId() + "'";
+                List<CatagoryTwo> c2List = getDb().findAllByWhere(CatagoryTwo.class, strWhere);
+                c1.setChildList((ArrayList<CatagoryTwo>) c2List);
+                for (CatagoryTwo c2 : c2List) {
+                    strWhere = "parentId = '" + c2.getId() + "'";
+                    List<CatagoryThree> c3List = getDb().findAllByWhere(CatagoryThree.class, strWhere);
+                    c2.setChildList((ArrayList<CatagoryThree>) c3List);
+                }
+                cgList2.add(c1);
+            }
+        }
 
-        return cgList;
+        return cgList2;
     }
 
 

@@ -68,7 +68,7 @@ public class CatagoryTwoActivity extends Activity {
     private boolean mPositionFlag = false;
     public static final int FlASH_GPSSTATUS = 100;
     public static final int UNFlASH_GPSSTATUS = 101;
-
+    private String voltage;
     public class GpsHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -201,7 +201,7 @@ public class CatagoryTwoActivity extends Activity {
         if (intent.hasExtra("CatagoryOne")) {
             parent = (CatagoryOne) intent.getSerializableExtra("CatagoryOne");
         }
-
+        voltage = intent.getStringExtra("voltage");
         getList();
 
         initView();
@@ -339,7 +339,7 @@ public class CatagoryTwoActivity extends Activity {
 
             showPopInfo();
         } else {
-            if ("低压".equals(DwpcApplication.getInstance().getSettingData().getWorkType())) {
+            if ("低压".equals(voltage)) {
                 showDiyaDialog();
             } else {
                 showGaoyaDialog();
@@ -586,11 +586,11 @@ public class CatagoryTwoActivity extends Activity {
 //			}
 //		}
 //
-//		stopGps();
+		stopGps();
 //
-//		Intent intent = new Intent();
-//		intent.putExtra("CatagoryOne", parent);
-//		setResult(RESULT_OK, intent);
+		Intent intent = new Intent();
+		intent.putExtra("CatagoryOne", parent);
+		setResult(RESULT_OK, intent);
 
         finish();
     }

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,12 +71,13 @@ public class CatagoryOneActivity extends Activity {
     private ProgressBar progressBar;
     private CustomProgressDialog dialog;
     private ImageView iv_map;
-
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cone);
         showmeidialog();
+        sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 //        progressBar = (ProgressBar) findViewById(R.id.site_pb_load);
         Timer timer = new Timer(true);
         timer.schedule(task, 1000); //第二个参数为延迟时间，1000为1s
@@ -170,6 +170,7 @@ public class CatagoryOneActivity extends Activity {
                     setCurCG(cg);
                     Intent intent = new Intent(CatagoryOneActivity.this, CatagoryTwoActivity.class);
                     intent.putExtra("CatagoryOne", cg);
+                    intent.putExtra("voltage",voltage);
                     startActivityForResult(intent, REQUEST_CATAGORY_TWO);
                 }
             }
@@ -372,7 +373,8 @@ public class CatagoryOneActivity extends Activity {
 //                curCg.setType(DwpcApplication.getInstance().getSettingData().getWorkType());
                 curCg.setType(voltage);
                 curCg.setCode(code);
-                curCg.setPersonName(DwpcApplication.getInstance().getSettingData().getPersonName());
+//                curCg.setPersonName(DwpcApplication.getInstance().getSettingData().getPersonName());
+                curCg.setPersonName(sp.getString("USER_NAME", ""));
                 curCg.setDate(DateUtils.getCurrentDate());
 
                 int startIndex = DwpcApplication.getInstance().getSettingData().getStartIndex() - 1;

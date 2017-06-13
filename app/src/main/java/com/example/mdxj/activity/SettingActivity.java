@@ -194,11 +194,11 @@ public class SettingActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.re_name:
-//                Intent iN = new Intent(SettingActivity.this,
-//                        UpdateNameActivity.class);
-//                iN.putExtra("OriName", sd.getPersonName());
-//
-//                startActivityForResult(iN, UPDATE_NAME);
+                Intent iN = new Intent(SettingActivity.this,
+                        UpdateNameActivity.class);
+                iN.putExtra("OriName", sd.getPersonName());
+
+                startActivityForResult(iN, UPDATE_NAME);
                 break;
             case R.id.re_worktype:
                 showWorkTypeDialog();

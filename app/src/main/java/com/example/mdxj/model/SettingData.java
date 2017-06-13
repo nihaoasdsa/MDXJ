@@ -16,7 +16,7 @@ public class SettingData{
     private String picSize;
     private String rootPath;
     private int startIndex;
-    
+    private SharedPreferences sp;
     public SettingData() {
     	personName = "";
     	workType = "低压";
@@ -92,9 +92,9 @@ public class SettingData{
 	public void init(Context cxt) {
 		mSP = cxt.getSharedPreferences(PREFERENCE_NAME,
                 Context.MODE_PRIVATE);
-		editor = mSP.edit(); 
-		
-		this.setPersonName(mSP.getString("personName", this.personName));
+		editor = mSP.edit();
+		sp = cxt.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+		this.setPersonName(sp.getString("USER_NAME", ""));
 		this.setWorkType(mSP.getString("workType", this.workType));
 		this.setPicSize(mSP.getString("picSize", this.picSize));
 		this.setAllowAllDelete(mSP.getString("allowAllDelete", this.allowAllDelete));
@@ -104,7 +104,7 @@ public class SettingData{
 	public void toDefault() {
 		SettingData s = new SettingData();
 		
-		this.setPersonName(s.getPersonName());
+		this.setPersonName(sp.getString("USER_NAME", ""));
 		this.setWorkType(s.getWorkType());
 		this.setPicSize(s.getPicSize());
 		this.setAllowAllDelete(s.getAllowAllDelete());
