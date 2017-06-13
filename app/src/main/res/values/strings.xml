@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">智能巡检系统</string>
+    <string name="inputyourname">输入编号</string>
 </resources>
