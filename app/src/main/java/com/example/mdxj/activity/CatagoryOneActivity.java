@@ -76,7 +76,6 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_cone);
         showmeidialog();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-//        progressBar = (ProgressBar) findViewById(R.id.site_pb_load);
         Timer timer = new Timer(true);
         timer.schedule(task, 1000); //第二个参数为延迟时间，1000为1s
     }
@@ -87,7 +86,6 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
         dialog = new CustomProgressDialog(this, "正在加载中", R.drawable.frame);
         dialog.show();
     }
-
     //  实现run()方法，发送一条Message给Handler
     TimerTask task = new TimerTask() {
         @Override
