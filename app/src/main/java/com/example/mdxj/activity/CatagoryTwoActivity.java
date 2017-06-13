@@ -63,7 +63,7 @@ public class CatagoryTwoActivity extends Activity {
 
     private static final int REQUEST_CATAGORY_THREE = 1;
     private static final int REQUEST_CATAGORY_THREE_EDIT = 2;
-
+    private ImageView iv_map;
     private Timer gpsStatusTimer = null;
     private RelativeLayout re_gps;
     private ImageView iv_gps;
@@ -161,9 +161,8 @@ public class CatagoryTwoActivity extends Activity {
 
         stopGps();
     }
-
     private void showGpsView() {
-        re_gps.setVisibility(View.VISIBLE);
+        re_gps.setVisibility(View.GONE);
     }
 
     private void hideGpsView() {
@@ -186,7 +185,6 @@ public class CatagoryTwoActivity extends Activity {
             }
         }, 500, 500);
     }
-
 
     private void unflashGpsStatus() {
         if (gpsStatusTimer != null) {
@@ -214,6 +212,15 @@ public class CatagoryTwoActivity extends Activity {
         tv_title.setText("坐标 (" + parent.getType() + ")");
 
         listView = (ListView) findViewById(R.id.list);
+        iv_map = (ImageView) findViewById(R.id.iv_map);
+        iv_map.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatagoryTwoActivity.this, LocationModeSourceActivity_Old.class);
+
+                startActivity(intent);
+            }
+        });
         listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override

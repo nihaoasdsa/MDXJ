@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CatagoryOneActivity extends Activity {
+public class CatagoryOneActivity extends Activity implements OnClickListener {
     private RelativeLayout re_operation;
     private TextView tv_title;
 
@@ -54,11 +54,10 @@ public class CatagoryOneActivity extends Activity {
     private RelativeLayout re_selectall_cancel;
     private TextView tv_selectall;
     private ImageView iv_operation;
-
     private PopupWindow popInfo = null;
 
     private ListView listView;
-    private static CatagoryOneAdapter adapter;
+    private CatagoryOneAdapter adapter;
 
     private List<CatagoryOne> cgList = null;
     private CatagoryOne curCg = null;
@@ -69,9 +68,7 @@ public class CatagoryOneActivity extends Activity {
     private int ID;
     private ProgressBar progressBar;
     private CustomProgressDialog dialog;
-    private ImageView iv_map;
     private SharedPreferences sp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,39 +106,19 @@ public class CatagoryOneActivity extends Activity {
     private void init() {
         intent = getIntent();
         voltage = intent.getStringExtra("voltage");
-        ID = intent.getExtras().getInt("ID");
+        ID=intent.getExtras().getInt("ID");
         if ("2018".equals(DateUtils.getCurrentYear())) {
             finish();
             return;
         }
-
         GpsLocation gps = new GpsLocation(this);
         if (!gps.isGpsOpen()) {
             showAlert("GPS未开启，是否马上设置？");
         }
 
         getList();
-
         initView();
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        iv_back = (ImageView) findViewById(R.id.iv_back);
-        iv_map = (ImageView) findViewById(R.id.iv_map);
-        iv_map.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CatagoryOneActivity.this, LocationModeSourceActivity_Old.class);
 
-                startActivity(intent);
-            }
-        });
-
-        iv_back.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        listView = (ListView) findViewById(R.id.list);
         listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override
@@ -169,63 +146,37 @@ public class CatagoryOneActivity extends Activity {
                     setCurCG(cg);
                     Intent intent = new Intent(CatagoryOneActivity.this, CatagoryTwoActivity.class);
                     intent.putExtra("CatagoryOne", cg);
-                    intent.putExtra("voltage", voltage);
+                    intent.putExtra("voltage",voltage);
                     startActivityForResult(intent, REQUEST_CATAGORY_TWO);
                 }
             }
         });
-        if (cgList != null)
-            adapter = new CatagoryOneAdapter(this, cgList);
+        if(cgList!=null)
+        adapter = new CatagoryOneAdapter(this, cgList);
         listView.setAdapter(adapter);
         dialog.dismiss();
+//        progressBar.setVisibility(View.GONE);
     }
 
     private void initView() {
-
         re_operation = (RelativeLayout) this.findViewById(R.id.re_operation);
-        re_operation.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doOperation();
-            }
-        });
-
+        re_operation.setOnClickListener(this) ;
         re_selectall = (RelativeLayout) this.findViewById(R.id.re_selectall);
-        re_selectall.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapter.clearSelectItem();
-                if ("全选".equals(tv_selectall.getText().toString().trim())) {
-                    int pos = 0;
-                    for (CatagoryOne c : cgList) {
-                        adapter.addSelectItem(pos++);
-                    }
-                    tv_selectall.setText("全不选");
-                } else {
-                    tv_selectall.setText("全选");
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+        re_selectall.setOnClickListener(this);
         re_selectall_cancel = (RelativeLayout) this.findViewById(R.id.re_selectall_cancel);
-        re_selectall_cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelSelectAll();
-            }
-        });
+        re_selectall_cancel.setOnClickListener(this);
         tv_selectall = (TextView) findViewById(R.id.tv_selectall);
         tv_selectall.setText("全选");
-
         iv_operation = (ImageView) this.findViewById(R.id.iv_operation);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
+        listView = (ListView) findViewById(R.id.list);
     }
-
 
     private void cancelSelectAll() {
         adapter.clearSelectItem();
         adapter.setSelecting(false);
         adapter.notifyDataSetChanged();
-
         re_selectall.setVisibility(View.GONE);
         re_selectall_cancel.setVisibility(View.GONE);
         iv_operation.setBackgroundResource(R.drawable.operation_add);
@@ -234,8 +185,6 @@ public class CatagoryOneActivity extends Activity {
     private void getList() {
         DwpcApplication.getInstance().initData(voltage);
         cgList = DwpcApplication.getInstance().getCatagoryOneList();
-//        Log.e("数据","---"+cgList.size());
-//        Log.e("数据","---"+cgList.get(0).getName());
 
     }
 
@@ -249,7 +198,6 @@ public class CatagoryOneActivity extends Activity {
                 Toast.makeText(CatagoryOneActivity.this, "未选择删除项", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             showPopInfo();
         } else {
             SharedPreferences sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -263,10 +211,8 @@ public class CatagoryOneActivity extends Activity {
             showCodeDialog();
         }
     }
-
     private void doDelete() {
         List<CatagoryOne> cgListDeleted = new ArrayList<CatagoryOne>();
-
         for (int i = 0; i < adapter.getSelectCount(); i++) {
             int sel = adapter.getSelectItem(i);
             cgListDeleted.add(cgList.get(sel));
@@ -280,14 +226,6 @@ public class CatagoryOneActivity extends Activity {
         cancelSelectAll();
         popInfo.dismiss();
     }
-
-//    @Override
-//    protected void onResume() {
-////        tv_title.setText("当前作业 (" + DwpcApplication.getInstance().getSettingData().getWorkType() + ")");
-//        tv_title.setText("当前作业 (" + voltage + ")");
-//        super.onResume();
-//    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -311,51 +249,19 @@ public class CatagoryOneActivity extends Activity {
             curCg = null;
         }
     }
-
+    /**
+     * 弹出编号的dialog
+     * **/
     private void showCodeDialog() {
-        final AlertDialog dlg = new AlertDialog.Builder(this).create();
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
-        LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.code_dialog, null);
-        dlg.setView(layout);
-        dlg.show();
-
-        Window view = dlg.getWindow();
-        view.setContentView(R.layout.code_dialog);
-
-        LinearLayout ll_title = (LinearLayout) view.findViewById(R.id.ll_title);
-        ll_title.setVisibility(View.VISIBLE);
-
-        TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-        tv_title.setText("请输入编号");
-
-        final EditText et_content = (EditText) view.findViewById(R.id.et_content);
-
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                InputMethodManager inputManager = (InputMethodManager)
-                        et_content.getContext().getSystemService(CatagoryOneActivity.INPUT_METHOD_SERVICE);
-                inputManager.showSoftInput(et_content, 0);
-            }
-        }, 500);
-
-        LinearLayout ll_doing = (LinearLayout) view.findViewById(R.id.ll_doing);
-        ll_doing.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-
-                String code = et_content.getText().toString().trim();
-                if (code == null || code.equals("")) {
-                    return;
-                }
+        new MyEditTextDialog(CatagoryOneActivity.this, "请输入编号","", "取消", "确定", new MyEditTextDialog.CallOnClickListener() {
+            @Override
+            public void RightBtnOnClick(String result) {
 //                if(ID==1){//如果是低压
                 curCg = new CatagoryOne();
-//                curCg.setType(DwpcApplication.getInstance().getSettingData().getWorkType());
                 curCg.setType(voltage);
-                curCg.setCode(code);
-//                curCg.setPersonName(DwpcApplication.getInstance().getSettingData().getPersonName());
+                curCg.setCode(result);
                 curCg.setPersonName(sp.getString("USER_NAME", ""));
                 curCg.setDate(DateUtils.getCurrentDate());
-
                 int startIndex = DwpcApplication.getInstance().getSettingData().getStartIndex() - 1;
                 if (startIndex < 0) {
                     startIndex = 0;
@@ -380,19 +286,13 @@ public class CatagoryOneActivity extends Activity {
                         curCg.save();
                     }
                 }
-//                }
-
-
-                dlg.cancel();
             }
-        });
+        }).show();
     }
-
     private void showPopInfo() {
         if (popInfo != null && popInfo.isShowing()) {
             return;
         }
-
         View popInfoView = getLayoutInflater().inflate(R.layout.popup_info, null);
 
         popInfo = new PopupWindow(popInfoView, LayoutParams.MATCH_PARENT,
@@ -423,42 +323,48 @@ public class CatagoryOneActivity extends Activity {
 
         });
     }
-
+//GPS提示框
     private void showAlert(String content) {
-        final AlertDialog dlg = new AlertDialog.Builder(this).create();
-        dlg.show();
-        Window window = dlg.getWindow();
-
-        window.setContentView(R.layout.alert_dialog);
-        LinearLayout ll_title = (LinearLayout) window.findViewById(R.id.ll_title);
-        ll_title.setVisibility(View.VISIBLE);
-
-        TextView tv_title = (TextView) window.findViewById(R.id.tv_title);
-        tv_title.setText("提示");
-
-        TextView tv_content = (TextView) window.findViewById(R.id.tv_content);
-        tv_content.setText(content);
-
-        TextView ll_doing_ok = (TextView) window.findViewById(R.id.ll_doing_ok);
-        ll_doing_ok.setText("设置");
-        ll_doing_ok.setOnClickListener(new OnClickListener() {
+        new MyAlertDialog(CatagoryOneActivity.this, "提示", content, "取消", "设置", new MyAlertDialog.CallAlertListerent() {
             @Override
-            public void onClick(View v) {
+            public void rightBtnListerent() {
                 startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                dlg.dismiss();
             }
-        });
 
-        TextView ll_doing_ng = (TextView) window.findViewById(R.id.ll_doing_ng);
-        ll_doing_ng.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-                dlg.dismiss();
+            public void leftBtnListerent() {
+
             }
-        });
+        }).show();
+
     }
 
-    public static void notify_adapter() {
-        adapter.notifyDataSetChanged();
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.re_operation:
+                    doOperation();
+                break;
+            case R.id.re_selectall:
+                adapter.clearSelectItem();
+                if ("全选".equals(tv_selectall.getText().toString().trim())) {
+                    int pos = 0;
+                    for (CatagoryOne c : cgList) {
+                        adapter.addSelectItem(pos++);
+                    }
+                    tv_selectall.setText("全不选");
+                } else {
+                    tv_selectall.setText("全选");
+                }
+                adapter.notifyDataSetChanged();
+                break;
+            case R.id.re_selectall_cancel:
+                cancelSelectAll();
+                break;
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }

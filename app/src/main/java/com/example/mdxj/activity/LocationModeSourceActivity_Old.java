@@ -29,9 +29,11 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolylineOptions;
+import com.bumptech.glide.Glide;
 import com.example.mdxj.R;
 import com.example.mdxj.jsonbean.ViewInfo;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * AMapV2地图中介绍使用active deactive进行定位
@@ -47,8 +49,10 @@ public class LocationModeSourceActivity_Old extends Activity implements Location
 	private ArrayList<ViewInfo> viewInfos = new ArrayList<ViewInfo>();
 	private Bitmap start_bitmap,end_bitmap;//开始和结束为止的图片
 	private ImageView iv_lm_back;
-	Bitmap bm1,bm2;
+	Bitmap bm1,bm2,bit_img;
 	Canvas canvas = null;
+	ArrayList<Marker> maList;
+	private Marker marker;
 	/**
 	 * 图片数组
 	 * **/
@@ -295,10 +299,15 @@ public class LocationModeSourceActivity_Old extends Activity implements Location
 	 */
 	public void render(Marker marker, View view) {
 
-			ImageView imageView = (ImageView) view.findViewById(R.id.badge);
-			imageView.setImageResource(R.drawable.badge_wa);
+
+		ImageView imageView = (ImageView) view.findViewById(R.id.badge);
 		String title = marker.getTitle();
-        Log.e("11111","---"+marker.getIcons());
+		List<BitmapDescriptor> list=new ArrayList<>();
+		list=marker.getIcons();
+		for (int i=0;i<list.size();i++){
+
+    Log.e("shuj","===="+list.size());
+		}
 		TextView titleUi = ((TextView) view.findViewById(R.id.title));
 		if (title != null) {
 			SpannableString titleText = new SpannableString(title);
