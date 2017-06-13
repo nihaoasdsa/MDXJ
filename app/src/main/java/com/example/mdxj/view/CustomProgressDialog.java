@@ -12,7 +12,7 @@ import com.example.mdxj.R;
 
 /**
  * @Description:自定义对话框
- * @author http://blog.csdn.net/finddreams
+ * @author jiangpan
  */
 public class CustomProgressDialog extends ProgressDialog {
 

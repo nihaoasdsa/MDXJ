@@ -7,16 +7,17 @@
 
     <ImageView
         android:id="@+id/loadingIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/frame"/>
 
     <TextView
+		android:layout_marginTop="10dp"
         android:id="@+id/loadingTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:layout_alignBottom="@+id/loadingIv"
-		
+		android:layout_below="@+id/loadingIv"
+
 		android:layout_centerHorizontal="true"
 		android:textSize="20sp"
         android:text="正在加载中.." />

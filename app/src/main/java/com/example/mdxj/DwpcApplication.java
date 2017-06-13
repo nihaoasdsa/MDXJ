@@ -131,7 +131,7 @@ public class DwpcApplication extends Application {
     public String createCsvFile() {
         String result = null;
 
-        for (CatagoryOne co : cgList) {
+        for (CatagoryOne co : cgList2) {
             result = co.createCsv();
             if (!"".equals(result)) {
                 break;
@@ -140,6 +140,5 @@ public class DwpcApplication extends Application {
 
         return result;
     }
-
 
 }

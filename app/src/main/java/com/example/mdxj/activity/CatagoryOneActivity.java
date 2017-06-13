@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,8 +40,6 @@ import com.example.mdxj.model.CatagoryTwo;
 import com.example.mdxj.util.DateUtils;
 import com.example.mdxj.util.StorageUtil;
 import com.example.mdxj.view.CustomProgressDialog;
-import com.example.mdxj.view.MyAlertDialog;
-import com.example.mdxj.view.MyEditTextDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +48,17 @@ import java.util.TimerTask;
 
 public class CatagoryOneActivity extends Activity implements OnClickListener {
     private RelativeLayout re_operation;
+    private TextView tv_title;
 
     private RelativeLayout re_selectall;
     private RelativeLayout re_selectall_cancel;
     private TextView tv_selectall;
     private ImageView iv_operation;
     private PopupWindow popInfo = null;
+
     private ListView listView;
     private CatagoryOneAdapter adapter;
+
     private List<CatagoryOne> cgList = null;
     private CatagoryOne curCg = null;
     private ImageView iv_back;
@@ -78,7 +77,9 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         Timer timer = new Timer(true);
         timer.schedule(task, 1000); //第二个参数为延迟时间，1000为1s
+
     }
+
     /**
      * 显示美团进度对话框，此对话框
      */
@@ -94,7 +95,7 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
         }
     };
     //handleMessage()方法，用于接收Message，刷新UI，加载ListView
-        private Handler mHandler = new Handler() {
+    private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             init();

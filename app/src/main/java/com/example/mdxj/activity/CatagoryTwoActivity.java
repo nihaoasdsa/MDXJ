@@ -3,12 +3,16 @@ package com.example.mdxj.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -269,11 +273,11 @@ public class CatagoryTwoActivity extends Activity {
 
             showPopInfo();
         } else {
-            if ("低压".equals(voltage)) {
-                showDiyaDialog();
-            } else {
-                showGaoyaDialog();
-            }
+//            if ("低压".equals(voltage)) {
+            showDiyaDialog();
+//            } else {
+//                showGaoyaDialog();
+//            }
         }
     }
 
@@ -386,12 +390,39 @@ public class CatagoryTwoActivity extends Activity {
         final ListView list = (ListView) window.findViewById(R.id.list);
 
         final List<String> contentList = new ArrayList<String>();
+        contentList.add("杆塔全景");
+        contentList.add("标识牌");
+        contentList.add("杆塔基础");
+        contentList.add("塔头");
+        contentList.add("大号通道");
+        contentList.add("小号通道");
+        contentList.add("其他");
         contentList.add("变压器");
-        contentList.add("杆");
-        contentList.add("电表箱");
-        contentList.add("分支箱");
-
-        ListDialogAdapter adapter = new ListDialogAdapter(this, contentList, -1);
+        contentList.add("计量箱");
+        contentList.add("电表");
+        final List<Bitmap> bitmapList = new ArrayList<Bitmap>();
+        Resources res = getResources();
+        Bitmap bmp1 = BitmapFactory.decodeResource(res, R.drawable.gtqj1);
+        Bitmap bmp2 = BitmapFactory.decodeResource(res, R.drawable.bsp);
+        Bitmap bmp3 = BitmapFactory.decodeResource(res, R.drawable.gtjc);
+        Bitmap bmp4 = BitmapFactory.decodeResource(res, R.drawable.tt);
+        Bitmap bmp5 = BitmapFactory.decodeResource(res, R.drawable.dhtd);
+        Bitmap bmp6 = BitmapFactory.decodeResource(res, R.drawable.xhtd);
+        Bitmap bmp7 = BitmapFactory.decodeResource(res, R.drawable.qt);
+        Bitmap bmp8 = BitmapFactory.decodeResource(res, R.drawable.byq);
+        Bitmap bmp9 = BitmapFactory.decodeResource(res, R.drawable.jlx);
+        Bitmap bmp10 = BitmapFactory.decodeResource(res, R.drawable.db);
+        bitmapList.add(bmp1);
+        bitmapList.add(bmp2);
+        bitmapList.add(bmp3);
+        bitmapList.add(bmp4);
+        bitmapList.add(bmp5);
+        bitmapList.add(bmp6);
+        bitmapList.add(bmp7);
+        bitmapList.add(bmp8);
+        bitmapList.add(bmp9);
+        bitmapList.add(bmp10);
+        ListDialogAdapter adapter = new ListDialogAdapter(this, contentList,bitmapList, -1);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new OnItemClickListener() {
@@ -415,53 +446,6 @@ public class CatagoryTwoActivity extends Activity {
 
         });
     }
-
-    private void showGaoyaDialog() {
-        final AlertDialog dlg = new AlertDialog.Builder(this).create();
-        dlg.show();
-        Window window = dlg.getWindow();
-
-        window.setContentView(R.layout.list_dialog);
-        LinearLayout ll_title = (LinearLayout) window.findViewById(R.id.ll_title);
-        ll_title.setVisibility(View.VISIBLE);
-
-        TextView tv_title = (TextView) window.findViewById(R.id.tv_title);
-        tv_title.setText("请选择");
-
-        final ListView list = (ListView) window.findViewById(R.id.list);
-
-        final List<String> contentList = new ArrayList<String>();
-        contentList.add("变电站");
-        contentList.add("杆");
-        contentList.add("电缆井");
-        contentList.add("开关站");
-        contentList.add("变压器");
-
-        ListDialogAdapter adapter = new ListDialogAdapter(this, contentList, -1);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> p, View view,
-                                    int position, long id) {
-
-                curCg = new CatagoryTwo();
-                curCg.setParentId(parent.getId());
-                curCg.setCode(parent.nextChildCode());
-                curCg.setPersonName(parent.getPersonName());
-                curCg.setType(contentList.get(position));
-                curCg.setDestPath(parent.getFolderPath());
-
-                Intent intent = new Intent(CatagoryTwoActivity.this, CatagoryThreeActivity.class);
-                intent.putExtra("CatagoryTwo", curCg);
-                CatagoryTwoActivity.this.startActivityForResult(intent, REQUEST_CATAGORY_THREE);
-
-                dlg.cancel();
-            }
-
-        });
-    }
-
     private void showPopInfo() {
         if (popInfo != null && popInfo.isShowing()) {
             return;
@@ -517,11 +501,22 @@ public class CatagoryTwoActivity extends Activity {
 //		}
 //
 //
-		Intent intent = new Intent();
-		intent.putExtra("CatagoryOne", parent);
-		setResult(RESULT_OK, intent);
+        Intent intent = new Intent();
+        intent.putExtra("CatagoryOne", parent);
+        setResult(RESULT_OK, intent);
 
         finish();
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            stopGps();
+            Intent intent = new Intent();
+            intent.putExtra("CatagoryOne", parent);
+            setResult(RESULT_OK, intent);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
