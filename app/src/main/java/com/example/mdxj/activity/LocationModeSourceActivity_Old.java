@@ -91,16 +91,16 @@ public class LocationModeSourceActivity_Old extends Activity implements Location
 	//载入标记数据
 	private void initViewInfo() {
 		viewInfos.clear();
-		viewInfos.add(new ViewInfo("东华门", (float)39.91356,(float)116.39544));
-		viewInfos.add(new ViewInfo("角楼", (float)39.91238602183407,(float)116.39542829017292));
-		viewInfos.add(new ViewInfo("午门", (float)39.91188,(float)116.39103));
-		viewInfos.add(new ViewInfo("太和门广场", (float)39.91315,(float)116.39095));
-		viewInfos.add(new ViewInfo("熙和门", (float)39.91312,(float)116.38954));
-		viewInfos.add(new ViewInfo("武英殿", (float)39.91402,(float)116.38815));
-		viewInfos.add(new ViewInfo("文华殿", (float)39.91381,(float)116.39320));
-		viewInfos.add(new ViewInfo("太和门", (float)39.91368,(float)116.39097));
-		viewInfos.add(new ViewInfo("太和殿广场",(float)39.91459,(float)116.39089));
-		viewInfos.add(new ViewInfo("弘义阁", (float)39.91478,(float)116.38959));
+		viewInfos.add(new ViewInfo(R.drawable.start,"东华门", (float)39.91356,(float)116.39544));
+		viewInfos.add(new ViewInfo( R.drawable.end,"角楼", (float)39.91238602183407,(float)116.39542829017292));
+		viewInfos.add(new ViewInfo( R.drawable.end,"午门", (float)39.91188,(float)116.39103));
+		viewInfos.add(new ViewInfo( R.drawable.ic_launcher,"太和门广场", (float)39.91315,(float)116.39095));
+		viewInfos.add(new ViewInfo( R.drawable.caid__06,"熙和门", (float)39.91312,(float)116.38954));
+		viewInfos.add(new ViewInfo( R.drawable.caid__03,"武英殿", (float)39.91402,(float)116.38815));
+		viewInfos.add(new ViewInfo( R.drawable.caid__03,"文华殿", (float)39.91381,(float)116.39320));
+		viewInfos.add(new ViewInfo( R.drawable.end,"太和门", (float)39.91368,(float)116.39097));
+		viewInfos.add(new ViewInfo( R.drawable.caid__03,"太和殿广场",(float)39.91459,(float)116.39089));
+		viewInfos.add(new ViewInfo( R.drawable.end,"弘义阁", (float)39.91478,(float)116.38959));
 
 
 	}
