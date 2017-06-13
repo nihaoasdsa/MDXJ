@@ -58,10 +58,9 @@ public class CatagoryOneActivity extends Activity {
     private PopupWindow popInfo = null;
 
     private ListView listView;
-    private CatagoryOneAdapter adapter;
+    private static CatagoryOneAdapter adapter;
 
     private List<CatagoryOne> cgList = null;
-    private List<CatagoryOne> cgList2 = new ArrayList<>();
     private CatagoryOne curCg = null;
     private ImageView iv_back;
     private static final int REQUEST_CATAGORY_TWO = 1;
@@ -72,13 +71,13 @@ public class CatagoryOneActivity extends Activity {
     private CustomProgressDialog dialog;
     private ImageView iv_map;
     private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cone);
         showmeidialog();
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-//        progressBar = (ProgressBar) findViewById(R.id.site_pb_load);
         Timer timer = new Timer(true);
         timer.schedule(task, 1000); //第二个参数为延迟时间，1000为1s
 
@@ -110,7 +109,7 @@ public class CatagoryOneActivity extends Activity {
     private void init() {
         intent = getIntent();
         voltage = intent.getStringExtra("voltage");
-        ID=intent.getExtras().getInt("ID");
+        ID = intent.getExtras().getInt("ID");
         if ("2018".equals(DateUtils.getCurrentYear())) {
             finish();
             return;
@@ -132,7 +131,7 @@ public class CatagoryOneActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(CatagoryOneActivity.this, LocationModeSourceActivity_Old.class);
 
-            startActivity(intent);
+                startActivity(intent);
             }
         });
 
@@ -170,34 +169,15 @@ public class CatagoryOneActivity extends Activity {
                     setCurCG(cg);
                     Intent intent = new Intent(CatagoryOneActivity.this, CatagoryTwoActivity.class);
                     intent.putExtra("CatagoryOne", cg);
-                    intent.putExtra("voltage",voltage);
+                    intent.putExtra("voltage", voltage);
                     startActivityForResult(intent, REQUEST_CATAGORY_TWO);
                 }
             }
         });
-//        //根据低、中、高压获取数据库数据
-//        for (int i = 0; i < cgList.size(); i++) {
-//            String m = cgList.get(i).getName();
-//            String name = m.substring(0, 2);
-//            String code = m.substring(m.lastIndexOf("_") + 1);
-//            String time=cgList.get(i).getDate();
-//            List<CatagoryTwo> c2List = DwpcApplication.getInstance().getDb().findAllByWhere(CatagoryTwo.class, strWhere);
-//            c1.setChildList((ArrayList<CatagoryTwo>)c2List);
-//            Log.e("qqqqq", m + "=====");
-//            if (voltage.equals(name)) {
-//                CatagoryOne co = new CatagoryOne();
-//                co.setType(name);
-//                co.setCode(code);
-//                co.setDate(time);
-//                cgList2.add(co);
-//
-//            }
-//        }
-        if(cgList!=null)
-        adapter = new CatagoryOneAdapter(this, cgList);
+        if (cgList != null)
+            adapter = new CatagoryOneAdapter(this, cgList);
         listView.setAdapter(adapter);
         dialog.dismiss();
-//        progressBar.setVisibility(View.GONE);
     }
 
     private void initView() {
@@ -321,7 +301,6 @@ public class CatagoryOneActivity extends Activity {
                         for (CatagoryTwo c2 : cldList) {
                             curCg.addChild(c2);
                         }
-
                         adapter.notifyDataSetChanged();
                         curCg.save();
                     }
@@ -479,5 +458,7 @@ public class CatagoryOneActivity extends Activity {
         });
     }
 
-
+    public static void notify_adapter() {
+        adapter.notifyDataSetChanged();
+    }
 }

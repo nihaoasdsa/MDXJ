@@ -2,41 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="2dp" >
+    android:paddingTop="2dp">
 
     <RelativeLayout
         android:id="@+id/re_parent"
         android:layout_width="match_parent"
-    	android:layout_height="48dp"
-    	android:background="@drawable/btn_list_item_bg">
+        android:layout_height="48dp"
+        android:background="@drawable/btn_list_item_bg">
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:text=""
-        android:singleLine="true"
-        android:maxWidth="200dp"
-        android:ellipsize="end"
-        android:textColor="#353535"
-        android:textSize="16sp" />
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/caid__50" />
 
-    <ImageView
-        android:id="@+id/iv_content"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-       	android:layout_marginRight="10dp"
-        android:background="@drawable/list_dialog_item_checked"
-        android:visibility="gone" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:text="vvvvv"
+            android:textColor="#353535"
+            android:textSize="16sp" />
 
-    <View
-	    android:layout_width="match_parent"
-	    android:layout_height="0.1dp"
-	    android:background="#dadada"
-	    android:layout_alignParentBottom="true"/>
-	</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/list_dialog_item_checked"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
 </RelativeLayout>

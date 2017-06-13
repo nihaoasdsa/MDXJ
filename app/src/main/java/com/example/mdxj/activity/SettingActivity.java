@@ -57,7 +57,7 @@ public class SettingActivity extends Activity {
     private List<String> workTypeList = new ArrayList<String>();
     private List<String> picSizeList = new ArrayList<String>();
     private List<String> yesornoList = new ArrayList<String>();
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,7 @@ public class SettingActivity extends Activity {
         if (sd == null) {
         	sd = DwpcApplication.getInstance().getSettingData();
         }
-        
+
         workTypeList.add("低压");
         workTypeList.add("高压");
         
@@ -236,7 +236,7 @@ public class SettingActivity extends Activity {
         
         final ListView list = (ListView) window.findViewById(R.id.list);
                 
-        ListDialogAdapter adapter = new ListDialogAdapter(this, workTypeList, curWorkTypeSelected);
+        ListDialogAdapter adapter = new ListDialogAdapter(this, workTypeList, null,curWorkTypeSelected);
         list.setAdapter(adapter);
         
         list.setOnItemClickListener(new OnItemClickListener(){
@@ -265,7 +265,7 @@ public class SettingActivity extends Activity {
         
         final ListView list = (ListView) window.findViewById(R.id.list);
                 
-        ListDialogAdapter adapter = new ListDialogAdapter(this, picSizeList, curPicSizeSelected);
+        ListDialogAdapter adapter = new ListDialogAdapter(this, picSizeList,null, curPicSizeSelected);
         list.setAdapter(adapter);
         
         list.setOnItemClickListener(new OnItemClickListener(){
@@ -338,7 +338,7 @@ public class SettingActivity extends Activity {
         
         final ListView list = (ListView) window.findViewById(R.id.list);
         
-        ListDialogAdapter adapter = new ListDialogAdapter(this, yesornoList, curDeleteAllSelected);
+        ListDialogAdapter adapter = new ListDialogAdapter(this, yesornoList,null, curDeleteAllSelected);
         list.setAdapter(adapter);
         
         list.setOnItemClickListener(new OnItemClickListener(){
