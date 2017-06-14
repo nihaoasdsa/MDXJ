@@ -59,65 +59,24 @@ public class CatagoryTwoActivity extends Activity {
     private static final int REQUEST_CATAGORY_THREE_EDIT = 2;
     private ImageView iv_map;
     private Timer gpsStatusTimer = null;
-    private ImageView iv_gps;
-    private final Handler mHandler = new GpsHandler();
     private GpsLocation mCGL = new GpsLocation(this);
     private boolean mPositionFlag = false;
     public static final int FlASH_GPSSTATUS = 100;
     public static final int UNFlASH_GPSSTATUS = 101;
     private String voltage;
 
-    public class GpsHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case GpsLocation.GPS_SUCCESS: {
-                    updateLocation();
-                    break;
-                }
-                case GpsLocation.GPS_STOP: {
-                    mPositionFlag = false;
-                    break;
-                }
-                case FlASH_GPSSTATUS: {
-                    iv_gps.setBackgroundResource(R.drawable.bn_gps_blue);
-                    break;
-                }
-                case UNFlASH_GPSSTATUS: {
-                    iv_gps.setBackgroundResource(R.drawable.wn_gps);
-                    break;
-                }
-                default:
-                    break;
-            }
-            return;
-        }
-    }
 
     private void startGps() {
-
         if (!mPositionFlag) {
             if (!mCGL.isGpsOpen()) {
                 Toast.makeText(CatagoryTwoActivity.this, "请开启GPS定位功能", Toast.LENGTH_SHORT).show();
             }
 
             mPositionFlag = true;
-            if (mCGL.startLoaction()) {
-                flashGpsStatus();
-            } else {
-                mPositionFlag = false;
-            }
+
         }
     }
 
-    public void stopGps() {
-        unflashGpsStatus();
-
-        if (mPositionFlag) {
-            mCGL.stopLocation();
-            mPositionFlag = false;
-        }
-    }
 
     public void updateLocation() {
         if (!mCGL.isAllowedArea()) {
@@ -127,8 +86,6 @@ public class CatagoryTwoActivity extends Activity {
 
         DecimalFormat df = new DecimalFormat("##0.000000");
         DecimalFormat df1 = new DecimalFormat("##0.00");
-
-        iv_gps.setBackgroundResource(R.drawable.bn_gps_blue);
 
         for (CatagoryTwo ct : cgList) {
             if (null == ct.getLat() || "".equals(ct.getLat())) {
@@ -149,27 +106,9 @@ public class CatagoryTwoActivity extends Activity {
             }
         }
         adapter.notifyDataSetChanged();
-
-        stopGps();
     }
 
 
-    private void flashGpsStatus() {
-        gpsStatusTimer = new Timer();
-        gpsStatusTimer.schedule(new TimerTask() {
-            private boolean first = true;
-
-            public void run() {
-                if (first) {
-                    mHandler.sendEmptyMessage(FlASH_GPSSTATUS);
-                    first = false;
-                } else {
-                    mHandler.sendEmptyMessage(UNFlASH_GPSSTATUS);
-                    first = true;
-                }
-            }
-        }, 500, 500);
-    }
 
     private void unflashGpsStatus() {
         if (gpsStatusTimer != null) {
@@ -182,9 +121,6 @@ public class CatagoryTwoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ctwo);
-
-        mCGL.setMh(mHandler);
-
         Intent intent = getIntent();
         if (intent.hasExtra("CatagoryOne")) {
             parent = (CatagoryOne) intent.getSerializableExtra("CatagoryOne");
@@ -231,8 +167,6 @@ public class CatagoryTwoActivity extends Activity {
                     adapter.changeSelectItem(position);
                     adapter.notifyDataSetChanged();
                 } else {
-                    stopGps();
-
                     CatagoryTwo cg = cgList.get(position);
                     setCurCG(cg);
 
@@ -305,13 +239,13 @@ public class CatagoryTwoActivity extends Activity {
 
         iv_operation = (ImageView) this.findViewById(R.id.iv_operation);
 
-        iv_gps = (ImageView) this.findViewById(R.id.iv_gps);
     }
 
     private void cancelSelectAll() {
         adapter.clearSelectItem();
         adapter.setSelecting(false);
         adapter.notifyDataSetChanged();
+
         re_selectall.setVisibility(View.GONE);
         re_selectall_cancel.setVisibility(View.GONE);
         iv_operation.setBackgroundResource(R.drawable.operation_add);
@@ -507,7 +441,6 @@ public class CatagoryTwoActivity extends Activity {
 
         });
     }
-
     private void showPopInfo() {
         if (popInfo != null && popInfo.isShowing()) {
             return;
@@ -562,7 +495,6 @@ public class CatagoryTwoActivity extends Activity {
 //			}
 //		}
 //
-        stopGps();
 //
         Intent intent = new Intent();
         intent.putExtra("CatagoryOne", parent);
@@ -570,11 +502,9 @@ public class CatagoryTwoActivity extends Activity {
 
         finish();
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            stopGps();
             Intent intent = new Intent();
             intent.putExtra("CatagoryOne", parent);
             setResult(RESULT_OK, intent);

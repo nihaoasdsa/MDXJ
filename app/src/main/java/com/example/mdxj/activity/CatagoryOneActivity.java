@@ -84,7 +84,6 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
         dialog = new CustomProgressDialog(this, "正在加载中", R.drawable.frame);
         dialog.show();
     }
-
     //  实现run()方法，发送一条Message给Handler
     TimerTask task = new TimerTask() {
         @Override
