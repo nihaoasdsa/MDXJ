@@ -1,7 +1,6 @@
 package com.example.mdxj.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,16 +11,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -40,6 +35,8 @@ import com.example.mdxj.model.CatagoryTwo;
 import com.example.mdxj.util.DateUtils;
 import com.example.mdxj.util.StorageUtil;
 import com.example.mdxj.view.CustomProgressDialog;
+import com.example.mdxj.view.MyAlertDialog;
+import com.example.mdxj.view.MyEditTextDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -253,10 +250,9 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
      * 弹出编号的dialog
      * **/
     private void showCodeDialog() {
-        new MyEditTextDialog(CatagoryOneActivity.this, "请输入编号","", "取消", "确定", new MyEditTextDialog.CallOnClickListener() {
+        new MyEditTextDialog(CatagoryOneActivity.this, "请输入名称","", "取消", "确定", new MyEditTextDialog.CallOnClickListener() {
             @Override
             public void RightBtnOnClick(String result) {
-//                if(ID==1){//如果是低压
                 curCg = new CatagoryOne();
                 curCg.setType(voltage);
                 curCg.setCode(result);
@@ -269,7 +265,7 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
                 curCg.setCurChildCode(startIndex);
 
                 if (StorageUtil.isExistName(curCg.getName())) {
-                    Toast.makeText(CatagoryOneActivity.this, "编号已存在或图片文件夹已存在！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatagoryOneActivity.this, "名称已存在或图片文件夹已存在！", Toast.LENGTH_SHORT).show();
                     curCg = null;
                 } else {
                     int dirRe = StorageUtil.mkdirs(curCg.getFolderPath());
@@ -277,7 +273,7 @@ public class CatagoryOneActivity extends Activity implements OnClickListener {
                         Toast.makeText(CatagoryOneActivity.this, "创建图片文件夹失败！", Toast.LENGTH_SHORT).show();
                         curCg = null;
                     } else if (dirRe == 0) {
-                        Toast.makeText(CatagoryOneActivity.this, "编号已存在或图片文件夹已存在！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CatagoryOneActivity.this, "名称已存在或图片文件夹已存在！", Toast.LENGTH_SHORT).show();
                         curCg = null;
                     } else {
 

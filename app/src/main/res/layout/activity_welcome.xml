@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="欢迎使用"
-        android:textSize="20sp"
+        android:textSize="@dimen/sp_20"
         android:textColor="#B7FBFB"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/dp_100"
         android:gravity="center"/>
 
     <TextView
@@ -21,18 +21,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="copyright © 2017-2018 liaoningzhongdiaoruibo"
-        android:textSize="13sp"
+        android:textSize="@dimen/sp_13"
         android:textColor="#CECECD"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="@dimen/dp_80"
         android:gravity="center"/>
     <TextView
         android:layout_above="@id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="智能巡检系统"
-        android:textSize="25sp"
+        android:textSize="@dimen/sp_24"
         android:textColor="#32CDCD"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/dp_20"
         android:textStyle="bold"
         android:gravity="center"/>
 </RelativeLayout>

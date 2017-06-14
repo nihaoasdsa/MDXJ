@@ -294,7 +294,7 @@ public class SettingActivity extends Activity {
         ll_title.setVisibility(View.VISIBLE);
 
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-        tv_title.setText("请输入坐标起始序号");
+        tv_title.setText("请输入线路起始序号");
         
         final EditText et_content = (EditText) view.findViewById(R.id.et_content);
         
@@ -318,7 +318,7 @@ public class SettingActivity extends Activity {
                 
                 sd.setStartIndex(Integer.valueOf(code));
                 tv_startindex.setText(""+sd.getStartIndex());
-        		Toast.makeText(SettingActivity.this, "本设置只针对新建作业的坐标起始序号，已建作业的坐标序号不变。",Toast.LENGTH_SHORT).show();
+        		Toast.makeText(SettingActivity.this, "本设置只针对新建作业的线路起始序号，已建作业的线路序号不变。",Toast.LENGTH_SHORT).show();
                 
                 dlg.cancel();
             }

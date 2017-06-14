@@ -12,24 +12,24 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="40dp"
+            android:layout_width="@dimen/dp_40"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:onClick="back"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:paddingTop="@dimen/dp_5"
             android:scaleType="centerInside"
             android:src="@drawable/top_bar_back" />
 
         <View
             android:id="@+id/view_temp"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/dp_1"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
             android:layout_toRightOf="@id/iv_back"
             android:background="#14191A" />
 
@@ -37,18 +37,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_toRightOf="@id/view_temp"
             android:text="设置"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/re_name"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -58,10 +58,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="姓名"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -69,29 +69,29 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_toRightOf="@id/tv_temp_name"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text=""
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="@dimen/dp_0.1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
             android:background="#dadada" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/re_worktype"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -101,10 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="作业类别"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_worktype"
@@ -112,28 +112,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_toRightOf="@id/tv_temp_worktype"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text=""
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="@dimen/dp_0.1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
             android:background="#dadada" />
     </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/re_picsize"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/dp_48"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -143,10 +143,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="照片尺寸"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_picsize"
@@ -154,21 +154,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_toRightOf="@id/tv_temp_picsize"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text=""
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="@dimen/dp_0.1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
             android:background="#dadada" />
     </RelativeLayout>
     
@@ -176,8 +176,8 @@
     <RelativeLayout
         android:id="@+id/re_startindex"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -187,10 +187,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="坐标起始序号"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:text="线路起始序号"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_startindex"
@@ -198,27 +198,27 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_toRightOf="@id/tv_temp_startindex"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text=""
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="@dimen/dp_0.1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
             android:background="#dadada" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/re_deleteall"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/dp_48"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -228,10 +228,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="是否允许全部删除"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_deleteall"
@@ -239,29 +239,29 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/dp_20"
             android:layout_toRightOf="@id/tv_temp_deleteall"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text=""
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="@dimen/dp_0.1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
             android:background="#dadada" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/re_csv"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -271,17 +271,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="生成CSV文件"
             android:textColor="#353535"
-            android:textSize="16sp" />   
+            android:textSize="@dimen/sp_16" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/re_default"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_30"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true" >
 
@@ -291,9 +291,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:text="恢复默认值"
             android:textColor="#353535"
-            android:textSize="16sp" />   
+            android:textSize="@dimen/sp_16" />
     </RelativeLayout>
 </LinearLayout>

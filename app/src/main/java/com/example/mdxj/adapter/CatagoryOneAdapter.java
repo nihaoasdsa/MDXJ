@@ -60,9 +60,10 @@ public class CatagoryOneAdapter extends BaseAdapter {
             holder.tv_unread = (TextView) convertView.findViewById(R.id.tv_unread);
             holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
             holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
-            holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_avatar);
+            holder.iv_avatar_low = (ImageView) convertView.findViewById(R.id.iv_avatar_low);
+            holder.iv_avatar_middle=(ImageView)convertView.findViewById(R.id.iv_avatar_middle);
+            holder.iv_avatar_high=(ImageView)convertView.findViewById(R.id.iv_avatar_high);
             holder.iv_select = (ImageView) convertView.findViewById(R.id.iv_select);
-            
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -73,7 +74,14 @@ public class CatagoryOneAdapter extends BaseAdapter {
         holder.tv_name.setText(cg.getName());
         holder.tv_time.setText(cg.getDate());
         holder.tv_content.setText(cg.getStaticInfo());
-
+        String name=cg.getName().substring(0,2);
+        if(name.equals("低压")){
+            holder.iv_avatar_low.setVisibility(View.VISIBLE);
+        }else if(name.equals("中压")){
+            holder.iv_avatar_middle.setVisibility(View.VISIBLE);
+        }else {
+            holder.iv_avatar_high.setVisibility(View.VISIBLE);
+        }
 //        if (cg.getChildList().size() > 0) {
 //            holder.iv_avatar.setImageResource(R.drawable.folder_open);
 //        } else {
@@ -151,7 +159,7 @@ public class CatagoryOneAdapter extends BaseAdapter {
         TextView tv_unread;
         TextView tv_content;
         TextView tv_time;
-        ImageView iv_avatar;
+        ImageView iv_avatar_low,iv_avatar_middle,iv_avatar_high;
         ImageView iv_select;
     }
 }

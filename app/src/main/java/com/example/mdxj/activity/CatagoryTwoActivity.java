@@ -27,7 +27,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.mdxj.DwpcApplication;
 import com.example.mdxj.R;
 import com.example.mdxj.adapter.CatagoryTwoAdapter;
@@ -36,7 +35,6 @@ import com.example.mdxj.location.GpsLocation;
 import com.example.mdxj.model.CatagoryOne;
 import com.example.mdxj.model.CatagoryThree;
 import com.example.mdxj.model.CatagoryTwo;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,17 +44,13 @@ import java.util.TimerTask;
 public class CatagoryTwoActivity extends Activity {
     private RelativeLayout re_operation;
     private TextView tv_title;
-
     private ListView listView;
     private CatagoryTwoAdapter adapter;
-
     private RelativeLayout re_selectall;
     private RelativeLayout re_selectall_cancel;
     private TextView tv_selectall;
     private ImageView iv_operation;
-
     private PopupWindow popInfo = null;
-
     private List<CatagoryTwo> cgList = new ArrayList<CatagoryTwo>();
     private CatagoryTwo curCg = null;
     private CatagoryOne parent = null;
@@ -65,7 +59,6 @@ public class CatagoryTwoActivity extends Activity {
     private static final int REQUEST_CATAGORY_THREE_EDIT = 2;
     private ImageView iv_map;
     private Timer gpsStatusTimer = null;
-    private RelativeLayout re_gps;
     private ImageView iv_gps;
     private final Handler mHandler = new GpsHandler();
     private GpsLocation mCGL = new GpsLocation(this);
@@ -102,7 +95,6 @@ public class CatagoryTwoActivity extends Activity {
     }
 
     private void startGps() {
-        showGpsView();
 
         if (!mPositionFlag) {
             if (!mCGL.isGpsOpen()) {
@@ -119,7 +111,6 @@ public class CatagoryTwoActivity extends Activity {
     }
 
     public void stopGps() {
-        hideGpsView();
         unflashGpsStatus();
 
         if (mPositionFlag) {
@@ -161,13 +152,7 @@ public class CatagoryTwoActivity extends Activity {
 
         stopGps();
     }
-    private void showGpsView() {
-        re_gps.setVisibility(View.GONE);
-    }
 
-    private void hideGpsView() {
-        re_gps.setVisibility(View.GONE);
-    }
 
     private void flashGpsStatus() {
         gpsStatusTimer = new Timer();
@@ -209,7 +194,7 @@ public class CatagoryTwoActivity extends Activity {
 
         initView();
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText("坐标 (" + parent.getType() + ")");
+        tv_title.setText("线路 (" + parent.getType() + ")");
 
         listView = (ListView) findViewById(R.id.list);
         iv_map = (ImageView) findViewById(R.id.iv_map);
@@ -321,14 +306,12 @@ public class CatagoryTwoActivity extends Activity {
         iv_operation = (ImageView) this.findViewById(R.id.iv_operation);
 
         iv_gps = (ImageView) this.findViewById(R.id.iv_gps);
-        re_gps = (RelativeLayout) this.findViewById(R.id.re_gps);
     }
 
     private void cancelSelectAll() {
         adapter.clearSelectItem();
         adapter.setSelecting(false);
         adapter.notifyDataSetChanged();
-
         re_selectall.setVisibility(View.GONE);
         re_selectall_cancel.setVisibility(View.GONE);
         iv_operation.setBackgroundResource(R.drawable.operation_add);
@@ -500,7 +483,7 @@ public class CatagoryTwoActivity extends Activity {
         bitmapList.add(bmp8);
         bitmapList.add(bmp9);
         bitmapList.add(bmp10);
-        ListDialogAdapter adapter = new ListDialogAdapter(this, contentList,bitmapList, -1);
+        ListDialogAdapter adapter = new ListDialogAdapter(this, contentList, bitmapList, -1);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new OnItemClickListener() {
@@ -524,6 +507,7 @@ public class CatagoryTwoActivity extends Activity {
 
         });
     }
+
     private void showPopInfo() {
         if (popInfo != null && popInfo.isShowing()) {
             return;
@@ -586,6 +570,7 @@ public class CatagoryTwoActivity extends Activity {
 
         finish();
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {

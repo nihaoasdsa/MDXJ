@@ -37,8 +37,7 @@
 	       android:layout_width="match_parent"
 	       android:layout_height="@dimen/dp_45"
 		   android:background="@null"
-	       android:inputType="phone"
-	       android:singleLine="true"	      
+	       android:singleLine="true"
 	       android:textColor="@color/btn_gray_pressed"
 	       android:textSize="@dimen/sp_15" />
 

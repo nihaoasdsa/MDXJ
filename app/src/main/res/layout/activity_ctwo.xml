@@ -13,24 +13,24 @@
         android:background="@color/common_top_bar_blue" >
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="40dp"
+            android:layout_width="@dimen/dp_40"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:onClick="back"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:paddingTop="@dimen/dp_5"
             android:scaleType="centerInside"
             android:src="@drawable/top_bar_back" />
 
         <View
             android:id="@+id/view_temp"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/dp_1"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
             android:layout_toRightOf="@id/iv_back"
             android:background="#14191A" />
 
@@ -39,17 +39,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_toRightOf="@id/view_temp"
-            android:text="坐标"
+            android:text="线路"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp_18" />
 		<ImageView
 			android:id="@+id/iv_map"
-			android:paddingBottom="5dp"
-			android:paddingLeft="5dp"
-			android:paddingRight="5dp"
-			android:paddingTop="5dp"
+			android:paddingBottom="@dimen/dp_5"
+			android:paddingLeft="@dimen/dp_5"
+			android:paddingRight="@dimen/dp_5"
+			android:paddingTop="@dimen/dp_5"
 			android:src="@mipmap/map"
 			android:layout_alignParentRight="true"
 			android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
 	<View
         android:id="@+id/view_temp1"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
+        android:layout_height="@dimen/dp_0.1"
         android:layout_above="@id/re_operation"
         android:background="#d6d6d6" />
     
@@ -79,7 +79,7 @@
 	<RelativeLayout
         android:id="@+id/re_operation"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="@dimen/dp_58"
 		android:background="@drawable/operation__bg"
         android:clickable="true"
 		android:layout_alignParentBottom="true"
@@ -87,29 +87,29 @@
 		android:layout_alignParentStart="true">
         <RelativeLayout
             android:id="@+id/re_selectall_cancel"
-            android:layout_width="80dp"
-            android:layout_height="58dp"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_58"
             android:layout_alignParentLeft="true"
             android:background="@drawable/operation__bg"
             android:clickable="true"
             android:visibility="gone" >
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/dp_10"
                 android:background="@drawable/icon_cancel" />
         </RelativeLayout>
         <ImageView
             android:id="@+id/iv_operation"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
             android:layout_centerInParent="true"
             android:background="@drawable/operation_add" />
         <RelativeLayout
             android:id="@+id/re_selectall"
-            android:layout_width="80dp"
-            android:layout_height="58dp"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_58"
             android:layout_alignParentRight="true"
             android:background="@drawable/operation__bg"
             android:clickable="true"
@@ -120,10 +120,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/dp_10"
                 android:text="全选"
                 android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textSize="@dimen/sp_18" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -77,7 +77,7 @@ public class CatagoryOne implements Serializable{
 		return type + "_" + code;
 	}
 	public String getStaticInfo() {
-		String info = this.childList.size() + "个坐标";
+		String info = this.childList.size() + "个线路";
 		
 		int picCnt = 0;
 		for (CatagoryTwo c : childList) {
