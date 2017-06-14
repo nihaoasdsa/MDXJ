@@ -101,15 +101,15 @@ public class SettingData{
 		this.setRootPath(mSP.getString("rootPath", this.rootPath));
 		this.setStartIndex(mSP.getInt("startIndex", this.startIndex));
 	}
-	public void toDefault() {
-		SettingData s = new SettingData();
-		
-		this.setPersonName(sp.getString("USER_NAME", ""));
-		this.setWorkType(s.getWorkType());
-		this.setPicSize(s.getPicSize());
-		this.setAllowAllDelete(s.getAllowAllDelete());
-		this.setRootPath(s.getRootPath());
-	}
+//	public void toDefault() {
+//		SettingData s = new SettingData();
+//
+//		this.setPersonName(sp.getString("USER_NAME", ""));
+//		this.setWorkType(s.getWorkType());
+//		this.setPicSize(s.getPicSize());
+//		this.setAllowAllDelete(s.getAllowAllDelete());
+//		this.setRootPath(s.getRootPath());
+//	}
 	public int getStartIndex() {
 		return startIndex;
 	}

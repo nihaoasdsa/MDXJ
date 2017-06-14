@@ -33,10 +33,10 @@ import java.util.TimerTask;
 public class SettingActivity extends Activity {
 
     private RelativeLayout re_name;
-    private RelativeLayout re_worktype;
+ //   private RelativeLayout re_worktype;
     private RelativeLayout re_picsize;
     private RelativeLayout re_deleteall;
-    private RelativeLayout re_default;
+  //  private RelativeLayout re_default;
     private RelativeLayout re_csv;
     private RelativeLayout re_startindex;
 
@@ -79,74 +79,74 @@ public class SettingActivity extends Activity {
         
         initView();
         
-        initValue();
+     //   initValue();
     }
 
     private void initView() {
         re_name = (RelativeLayout) this.findViewById(R.id.re_name);
-        re_worktype = (RelativeLayout) this.findViewById(R.id.re_worktype);
+     //   re_worktype = (RelativeLayout) this.findViewById(R.id.re_worktype);
         re_picsize = (RelativeLayout) this.findViewById(R.id.re_picsize);
         re_deleteall = (RelativeLayout) this.findViewById(R.id.re_deleteall);
-        re_default = (RelativeLayout) this.findViewById(R.id.re_default);
+    //    re_default = (RelativeLayout) this.findViewById(R.id.re_default);
         re_csv = (RelativeLayout) this.findViewById(R.id.re_csv);
         re_startindex = (RelativeLayout) this.findViewById(R.id.re_startindex);
         re_name.setOnClickListener(new MyListener());
-        re_worktype.setOnClickListener(new MyListener());
+    //    re_worktype.setOnClickListener(new MyListener());
         re_picsize.setOnClickListener(new MyListener());
         re_deleteall.setOnClickListener(new MyListener());
-        re_default.setOnClickListener(new MyListener());
+      //  re_default.setOnClickListener(new MyListener());
         re_csv.setOnClickListener(new MyListener());
         re_startindex.setOnClickListener(new MyListener());
         
         tv_name = (TextView) this.findViewById(R.id.tv_name);
-        tv_worktype = (TextView) this.findViewById(R.id.tv_worktype);
+      //  tv_worktype = (TextView) this.findViewById(R.id.tv_worktype);
         tv_picsize = (TextView) this.findViewById(R.id.tv_picsize);
         tv_deleteall = (TextView) this.findViewById(R.id.tv_deleteall);
         tv_startindex = (TextView) this.findViewById(R.id.tv_startindex);
     }
     
-    private void initValue() {
-        curWorkTypeSelected = 0;
-        curPicSizeSelected = 0;
-        curDeleteAllSelected = 0;
-        
-        for(String str : workTypeList) {
-        	if (str.equals(sd.getWorkType())) {
-        		break;
-        	}
-        	curWorkTypeSelected++;
-        }
-        
-        for(String str : picSizeList) {
-        	if (str.equals(sd.getPicSize())) {
-        		break;
-        	}
-        	curPicSizeSelected++;
-        }
-        
-        for(String str : yesornoList) {
-        	if (str.equals(sd.getAllowAllDelete())) {
-        		break;
-        	}
-        	curDeleteAllSelected++;
-        }
+//    private void initValue() {
+//        curWorkTypeSelected = 0;
+//        curPicSizeSelected = 0;
+//        curDeleteAllSelected = 0;
+//
+//        for(String str : workTypeList) {
+//        	if (str.equals(sd.getWorkType())) {
+//        		break;
+//        	}
+//        	curWorkTypeSelected++;
+//        }
+//
+//        for(String str : picSizeList) {
+//        	if (str.equals(sd.getPicSize())) {
+//        		break;
+//        	}
+//        	curPicSizeSelected++;
+//        }
+//
+//        for(String str : yesornoList) {
+//        	if (str.equals(sd.getAllowAllDelete())) {
+//        		break;
+//        	}
+//        	curDeleteAllSelected++;
+//        }
 
 //        tv_name.setText(sd.getPersonName());
-        tv_name.setText(sp.getString("USER_NAME", ""));
-        tv_worktype.setText(sd.getWorkType());
-        tv_deleteall.setText(sd.getAllowAllDelete());
-        tv_picsize.setText(sd.getPicSize());
-        tv_startindex.setText(""+sd.getStartIndex());
-    }
+//        tv_name.setText(sp.getString("USER_NAME", ""));
+//        tv_worktype.setText(sd.getWorkType());
+//        tv_deleteall.setText(sd.getAllowAllDelete());
+//        tv_picsize.setText(sd.getPicSize());
+//        tv_startindex.setText(""+sd.getStartIndex());
+//    }
     
-    private void setToDefault() {
-        sd.toDefault();
-        
-        initValue();
-        
-		Toast.makeText(SettingActivity.this, "已恢复到默认值",Toast.LENGTH_SHORT).show();
-    }
-    
+//    private void setToDefault() {
+//        sd.toDefault();
+//
+//        initValue();
+//
+//		Toast.makeText(SettingActivity.this, "已恢复到默认值",Toast.LENGTH_SHORT).show();
+//    }
+//
     private void createCsvFile() {
     	String result = DwpcApplication.getInstance().createCsvFile();
     	if ("".equals(result)) {
@@ -200,9 +200,6 @@ public class SettingActivity extends Activity {
 
                 startActivityForResult(iN, UPDATE_NAME);
                 break;
-            case R.id.re_worktype:
-                showWorkTypeDialog();
-                break;
             case R.id.re_picsize:
                 showPicSizeDialog();
                 break;
@@ -211,9 +208,6 @@ public class SettingActivity extends Activity {
                 break;
             case R.id.re_deleteall:
                 showDeleteAllDialog();
-                break;
-            case R.id.re_default:
-            	setToDefault();
                 break;
             case R.id.re_csv:
             	createCsvFile();

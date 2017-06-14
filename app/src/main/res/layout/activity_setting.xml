@@ -87,48 +87,7 @@
             android:background="#dadada" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_worktype"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_list_item_bg"
-        android:clickable="true" >
 
-        <TextView
-            android:id="@+id/tv_temp_worktype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="作业类别"
-            android:textColor="#353535"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_worktype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/tv_temp_worktype"
-            android:ellipsize="end"
-            android:gravity="right"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="#AAAAAA"
-            android:textSize="14sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="#dadada" />
-    </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/re_picsize"
@@ -277,23 +236,4 @@
             android:textSize="16sp" />   
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_default"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/btn_list_item_bg"
-        android:clickable="true" >
-
-        <TextView
-            android:id="@+id/tv_temp_default"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="恢复默认值"
-            android:textColor="#353535"
-            android:textSize="16sp" />   
-    </RelativeLayout>
 </LinearLayout>
