@@ -87,49 +87,49 @@
             android:background="#dadada" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_worktype"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:layout_marginTop="@dimen/dp_20"
-        android:background="@drawable/btn_list_item_bg"
-        android:clickable="true" >
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/re_worktype"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp_48"-->
+        <!--android:layout_marginTop="@dimen/dp_20"-->
+        <!--android:background="@drawable/btn_list_item_bg"-->
+        <!--android:clickable="true" >-->
 
-        <TextView
-            android:id="@+id/tv_temp_worktype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:text="作业类别"
-            android:textColor="#353535"
-            android:textSize="@dimen/sp_16" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_temp_worktype"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/dp_20"-->
+            <!--android:text="作业类别"-->
+            <!--android:textColor="#353535"-->
+            <!--android:textSize="@dimen/sp_16" />-->
 
-        <TextView
-            android:id="@+id/tv_worktype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_20"
-            android:layout_toRightOf="@id/tv_temp_worktype"
-            android:ellipsize="end"
-            android:gravity="right"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="#AAAAAA"
-            android:textSize="@dimen/sp_14" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_worktype"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="@dimen/dp_20"-->
+            <!--android:layout_toRightOf="@id/tv_temp_worktype"-->
+            <!--android:ellipsize="end"-->
+            <!--android:gravity="right"-->
+            <!--android:singleLine="true"-->
+            <!--android:text=""-->
+            <!--android:textColor="#AAAAAA"-->
+            <!--android:textSize="@dimen/sp_14" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_0.1"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/dp_12"
-            android:layout_marginRight="@dimen/dp_12"
-            android:background="#dadada" />
-    </RelativeLayout>
-    
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp_0.1"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginLeft="@dimen/dp_12"-->
+            <!--android:layout_marginRight="@dimen/dp_12"-->
+            <!--android:background="#dadada" />-->
+    <!--</RelativeLayout>-->
+    <!---->
     <RelativeLayout
         android:id="@+id/re_picsize"
         android:layout_width="match_parent"
@@ -277,23 +277,23 @@
             android:textSize="@dimen/sp_16" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_default"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:layout_marginTop="@dimen/dp_30"
-        android:background="@drawable/btn_list_item_bg"
-        android:clickable="true" >
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/re_default"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp_48"-->
+        <!--android:layout_marginTop="@dimen/dp_30"-->
+        <!--android:background="@drawable/btn_list_item_bg"-->
+        <!--android:clickable="true" >-->
 
-        <TextView
-            android:id="@+id/tv_temp_default"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:text="恢复默认值"
-            android:textColor="#353535"
-            android:textSize="@dimen/sp_16" />
-    </RelativeLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_temp_default"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/dp_20"-->
+            <!--android:text="恢复默认值"-->
+            <!--android:textColor="#353535"-->
+            <!--android:textSize="@dimen/sp_16" />-->
+    <!--</RelativeLayout>-->
 </LinearLayout>
