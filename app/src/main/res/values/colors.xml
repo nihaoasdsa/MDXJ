@@ -43,4 +43,6 @@
     <color name="black_deep">#FF000000</color>
     <color name="button_back">#9BDFD5</color>
     <color name="layoutpressedclo">#88008ae6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#f4f4f4</color>
 </resources>

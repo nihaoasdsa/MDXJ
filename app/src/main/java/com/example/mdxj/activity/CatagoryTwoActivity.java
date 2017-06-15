@@ -9,8 +9,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,6 +25,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.mdxj.DwpcApplication;
 import com.example.mdxj.R;
 import com.example.mdxj.adapter.CatagoryTwoAdapter;
@@ -35,11 +34,11 @@ import com.example.mdxj.location.GpsLocation;
 import com.example.mdxj.model.CatagoryOne;
 import com.example.mdxj.model.CatagoryThree;
 import com.example.mdxj.model.CatagoryTwo;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class CatagoryTwoActivity extends Activity {
     private RelativeLayout re_operation;
@@ -64,8 +63,6 @@ public class CatagoryTwoActivity extends Activity {
     public static final int FlASH_GPSSTATUS = 100;
     public static final int UNFlASH_GPSSTATUS = 101;
     private String voltage;
-
-
     private void startGps() {
         if (!mPositionFlag) {
             if (!mCGL.isGpsOpen()) {
@@ -76,8 +73,6 @@ public class CatagoryTwoActivity extends Activity {
 
         }
     }
-
-
     public void updateLocation() {
         if (!mCGL.isAllowedArea()) {
             Toast.makeText(CatagoryTwoActivity.this, "已超出授权的作业范围", Toast.LENGTH_SHORT).show();
@@ -107,9 +102,6 @@ public class CatagoryTwoActivity extends Activity {
         }
         adapter.notifyDataSetChanged();
     }
-
-
-
     private void unflashGpsStatus() {
         if (gpsStatusTimer != null) {
             gpsStatusTimer.cancel();
@@ -149,7 +141,6 @@ public class CatagoryTwoActivity extends Activity {
                 adapter.setSelecting(true);
                 adapter.changeSelectItem(position);
                 adapter.notifyDataSetChanged();
-
                 if ("是".equals(DwpcApplication.getInstance().getSettingData().getAllowAllDelete())) {
                     re_selectall.setVisibility(View.VISIBLE);
                 }
@@ -424,7 +415,6 @@ public class CatagoryTwoActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> p, View view,
                                     int position, long id) {
-
                 curCg = new CatagoryTwo();
                 curCg.setParentId(parent.getId());
                 curCg.setCode(parent.nextChildCode());

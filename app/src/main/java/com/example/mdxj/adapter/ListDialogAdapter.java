@@ -73,8 +73,11 @@ public class ListDialogAdapter extends BaseAdapter {
         }
 
         holder.tv_content.setText(getItem(position));
-        if(bitmapList!=null&&bitmapList.size()>0)
-        holder.img.setImageBitmap(bitmapList.get(position));
+        if(bitmapList!=null&&bitmapList.size()>0){
+            holder.img.setVisibility(View.VISIBLE);
+            holder.img.setImageBitmap(bitmapList.get(position));
+        }
+
         if (curSelected == position) {
             holder.iv_content.setVisibility(View.VISIBLE);
         } else {

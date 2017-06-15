@@ -103,6 +103,7 @@ public class SettingActivity extends Activity {
         tv_picsize = (TextView) this.findViewById(R.id.tv_picsize);
         tv_deleteall = (TextView) this.findViewById(R.id.tv_deleteall);
         tv_startindex = (TextView) this.findViewById(R.id.tv_startindex);
+        tv_name.setText(sp.getString("USER_NAME", ""));
     }
     
 //    private void initValue() {
@@ -132,7 +133,7 @@ public class SettingActivity extends Activity {
 //        }
 
 //        tv_name.setText(sd.getPersonName());
-//        tv_name.setText(sp.getString("USER_NAME", ""));
+
 //        tv_worktype.setText(sd.getWorkType());
 //        tv_deleteall.setText(sd.getAllowAllDelete());
 //        tv_picsize.setText(sd.getPicSize());
@@ -194,11 +195,11 @@ public class SettingActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.re_name:
-                Intent iN = new Intent(SettingActivity.this,
-                        UpdateNameActivity.class);
-                iN.putExtra("OriName", sd.getPersonName());
-
-                startActivityForResult(iN, UPDATE_NAME);
+//                Intent iN = new Intent(SettingActivity.this,
+//                        UpdateNameActivity.class);
+//                iN.putExtra("OriName", sd.getPersonName());
+//
+//                startActivityForResult(iN, UPDATE_NAME);
                 break;
             case R.id.re_picsize:
                 showPicSizeDialog();
