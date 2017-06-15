@@ -47,7 +47,7 @@
 		android:layout_height="@dimen/dp_0.5"
 		android:background="@color/btn_gray_pressed" />
      <LinearLayout
-        android:id="@+id/ll_doing"
+        android:id="@+id/ll_setting"
          android:layout_width="fill_parent"
 		 android:layout_height="@dimen/dp_45"
      	android:background="@drawable/btn_list_item_bg"

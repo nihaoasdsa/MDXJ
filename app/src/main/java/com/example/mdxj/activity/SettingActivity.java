@@ -24,6 +24,7 @@ import com.example.mdxj.DwpcApplication;
 import com.example.mdxj.R;
 import com.example.mdxj.adapter.ListDialogAdapter;
 import com.example.mdxj.model.SettingData;
+import com.example.mdxj.view.MyEditTextDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class SettingActivity extends Activity {
     private TextView tv_startindex;
 
     private static final int UPDATE_NAME = 1;
-    
+
     private SettingData sd = null;
     private SharedPreferences sp;
     private int curWorkTypeSelected = 0;
@@ -69,7 +70,7 @@ public class SettingActivity extends Activity {
 
         workTypeList.add("低压");
         workTypeList.add("高压");
-        
+
         picSizeList.add("540 x 960");
         picSizeList.add("720 x 1280");
         picSizeList.add("1080 x 1920");
@@ -105,41 +106,41 @@ public class SettingActivity extends Activity {
         tv_startindex = (TextView) this.findViewById(R.id.tv_startindex);
         tv_name.setText(sp.getString("USER_NAME", ""));
     }
-    
-//    private void initValue() {
-//        curWorkTypeSelected = 0;
-//        curPicSizeSelected = 0;
-//        curDeleteAllSelected = 0;
-//
-//        for(String str : workTypeList) {
-//        	if (str.equals(sd.getWorkType())) {
-//        		break;
-//        	}
-//        	curWorkTypeSelected++;
-//        }
-//
-//        for(String str : picSizeList) {
-//        	if (str.equals(sd.getPicSize())) {
-//        		break;
-//        	}
-//        	curPicSizeSelected++;
-//        }
-//
-//        for(String str : yesornoList) {
-//        	if (str.equals(sd.getAllowAllDelete())) {
-//        		break;
-//        	}
-//        	curDeleteAllSelected++;
-//        }
 
-//        tv_name.setText(sd.getPersonName());
+    private void initValue() {
+        curWorkTypeSelected = 0;
+        curPicSizeSelected = 0;
+        curDeleteAllSelected = 0;
 
-//        tv_worktype.setText(sd.getWorkType());
-//        tv_deleteall.setText(sd.getAllowAllDelete());
-//        tv_picsize.setText(sd.getPicSize());
-//        tv_startindex.setText(""+sd.getStartIndex());
-//    }
-    
+        for(String str : workTypeList) {
+        	if (str.equals(sd.getWorkType())) {
+        		break;
+        	}
+        	curWorkTypeSelected++;
+        }
+
+        for(String str : picSizeList) {
+        	if (str.equals(sd.getPicSize())) {
+        		break;
+        	}
+        	curPicSizeSelected++;
+        }
+
+        for(String str : yesornoList) {
+        	if (str.equals(sd.getAllowAllDelete())) {
+        		break;
+        	}
+        	curDeleteAllSelected++;
+        }
+
+        tv_name.setText(sd.getPersonName());
+        tv_name.setText(sp.getString("USER_NAME", ""));
+       // tv_worktype.setText(sd.getWorkType());
+        tv_deleteall.setText(sd.getAllowAllDelete());
+        tv_picsize.setText(sd.getPicSize());
+        tv_startindex.setText(""+sd.getStartIndex());
+   }
+
 //    private void setToDefault() {
 //        sd.toDefault();
 //
@@ -225,15 +226,15 @@ public class SettingActivity extends Activity {
         window.setContentView(R.layout.list_dialog);
         LinearLayout ll_title = (LinearLayout) window.findViewById(R.id.ll_title);
         ll_title.setVisibility(View.VISIBLE);
-        
+
         TextView tv_title = (TextView) window.findViewById(R.id.tv_title);
         tv_title.setText("请选择");
-        
+
         final ListView list = (ListView) window.findViewById(R.id.list);
-                
+
         ListDialogAdapter adapter = new ListDialogAdapter(this, workTypeList, null,curWorkTypeSelected);
         list.setAdapter(adapter);
-        
+
         list.setOnItemClickListener(new OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -242,7 +243,7 @@ public class SettingActivity extends Activity {
                 sd.setWorkType(workTypeList.get(position));
                 tv_worktype.setText(sd.getWorkType());
                 dlg.cancel();
-            }            
+            }
         });
     }
 
@@ -276,48 +277,32 @@ public class SettingActivity extends Activity {
     }
 
     private void showCodeDialog() {
-        final AlertDialog dlg = new AlertDialog.Builder(this).create();
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
-        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.code_dialog, null);
-        dlg.setView(layout);
-        dlg.show();
-        
-        Window view = dlg.getWindow();
-        view.setContentView(R.layout.code_dialog);
-        
-        LinearLayout ll_title = (LinearLayout) view.findViewById(R.id.ll_title);
-        ll_title.setVisibility(View.VISIBLE);
+//        final AlertDialog dlg = new AlertDialog.Builder(this).create();
+//        LayoutInflater inflater = (LayoutInflater) this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
+//        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.code_dialog, null);
+//        dlg.setView(layout);
+//        dlg.show();
+//
+//        Window view = dlg.getWindow();
+//        view.setContentView(R.layout.code_dialog);
+//
+//        LinearLayout ll_title = (LinearLayout) view.findViewById(R.id.ll_title);
+//        ll_title.setVisibility(View.VISIBLE);
+ new MyEditTextDialog(SettingActivity.this, "请输入线路起始序号", "", "取消", "确定", new MyEditTextDialog.CallOnClickListener() {
+     @Override
+     public void RightBtnOnClick(String result) {
+         if(result == null || result.equals("")) {
+             return;
+         }
 
-        TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-        tv_title.setText("请输入线路起始序号");
-        
-        final EditText et_content = (EditText) view.findViewById(R.id.et_content);
-        
-        Timer timer = new Timer();  
-        timer.schedule(new TimerTask() {            
-            public void run() {  
-                InputMethodManager inputManager = (InputMethodManager) 
-                		et_content.getContext().getSystemService(CatagoryOneActivity.INPUT_METHOD_SERVICE);  
-                inputManager.showSoftInput(et_content, 0);  
-            }  
-        }, 500);  
-        
-        LinearLayout ll_doing = (LinearLayout) view.findViewById(R.id.ll_doing);
-        ll_doing.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-            	
-            	String code = et_content.getText().toString().trim();
-                if(code == null || code.equals("")) {
-                    return;
-                }  
-                
-                sd.setStartIndex(Integer.valueOf(code));
-                tv_startindex.setText(""+sd.getStartIndex());
-        		Toast.makeText(SettingActivity.this, "本设置只针对新建作业的线路起始序号，已建作业的线路序号不变。",Toast.LENGTH_SHORT).show();
-                
-                dlg.cancel();
-            }
-        });
+         sd.setStartIndex(Integer.valueOf(result));
+         tv_startindex.setText(""+sd.getStartIndex());
+         Toast.makeText(SettingActivity.this, "本设置只针对新建作业的线路起始序号，已建作业的线路序号不变。",Toast.LENGTH_SHORT).show();
+     }
+ }).show();
+
+
+
     }
     private void showDeleteAllDialog() {
         final AlertDialog dlg = new AlertDialog.Builder(this).create();
