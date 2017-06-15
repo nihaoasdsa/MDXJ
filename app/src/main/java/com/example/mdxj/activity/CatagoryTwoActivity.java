@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,6 +36,8 @@ import com.example.mdxj.location.GpsLocation;
 import com.example.mdxj.model.CatagoryOne;
 import com.example.mdxj.model.CatagoryThree;
 import com.example.mdxj.model.CatagoryTwo;
+import com.example.mdxj.view.MyAlertDialog;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +54,13 @@ public class CatagoryTwoActivity extends Activity {
     private TextView tv_selectall;
     private ImageView iv_operation;
     private PopupWindow popInfo = null;
+    //首页数据的集合
     private List<CatagoryTwo> cgList = new ArrayList<CatagoryTwo>();
     private CatagoryTwo curCg = null;
     private CatagoryOne parent = null;
 
     private static final int REQUEST_CATAGORY_THREE = 1;
+    private static final int REQUEST_CATAGORY_THREE_DATA=3;
     private static final int REQUEST_CATAGORY_THREE_EDIT = 2;
     private ImageView iv_map;
     private Timer gpsStatusTimer = null;
@@ -176,7 +181,7 @@ public class CatagoryTwoActivity extends Activity {
                 }
             }
         });
-
+//页面适配器的加载
         adapter = new CatagoryTwoAdapter(this, cgList);
         listView.setAdapter(adapter);
     }
@@ -298,35 +303,11 @@ public class CatagoryTwoActivity extends Activity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CATAGORY_THREE:
-                    if (data != null && data.hasExtra("CatagoryTwo")) {
-                        CatagoryTwo cg = (CatagoryTwo) data.getSerializableExtra("CatagoryTwo");
-
-                        ArrayList<CatagoryThree> cldList = cg.getChildList();
-                        curCg.setCurChildCode(cg.getCurChildCode());
-
-                        curCg.getChildList().clear();
-                        for (CatagoryThree c3 : cldList) {
-                            curCg.addChild(c3);
-                        }
-
-                        if (cldList.size() > 0) {
-                            String date = cldList.get(cldList.size() - 1).getUpdateTime();
-                            curCg.setUpdateTime(date);
-                            curCg.setLat(cldList.get(0).getLat());
-                            curCg.setLng(cldList.get(0).getLng());
-                        } else {
-                            curCg.setUpdateTime("");
-                            curCg.setLat("");
-                            curCg.setLng("");
-                        }
-
-                        cgList.add(curCg);
-                        adapter.notifyDataSetChanged();
-
-                        curCg.save();
-                        parent.save();
-                    }
+                    getBackResult(data);
                     break;
+//                case REQUEST_CATAGORY_THREE_DATA:
+//                    getBackResult(data);
+//                    break;
                 case REQUEST_CATAGORY_THREE_EDIT:
                     if (data != null && data.hasExtra("CatagoryTwo")) {
                         CatagoryTwo cg = (CatagoryTwo) data.getSerializableExtra("CatagoryTwo");
@@ -365,11 +346,39 @@ public class CatagoryTwoActivity extends Activity {
                     break;
                 case REQUEST_CATAGORY_THREE_EDIT:
                     break;
+//                case REQUEST_CATAGORY_THREE_DATA:
+//                    parent.rollbackChildCode();
+//                    break;
             }
             curCg = null;
         }
     }
+  private  void getBackResult(Intent data){
+      if (data != null && data.hasExtra("CatagoryTwo")) {
+          CatagoryTwo cg = (CatagoryTwo) data.getSerializableExtra("CatagoryTwo");
 
+          ArrayList<CatagoryThree> cldList = cg.getChildList();
+          curCg.setCurChildCode(cg.getCurChildCode());
+          curCg.getChildList().clear();
+          for (CatagoryThree c3 : cldList) {
+              curCg.addChild(c3);
+          }
+          if (cldList.size() > 0) {
+              String date = cldList.get(cldList.size() - 1).getUpdateTime();
+              curCg.setUpdateTime(date);
+              curCg.setLat(cldList.get(0).getLat());
+              curCg.setLng(cldList.get(0).getLng());
+          } else {
+              curCg.setUpdateTime("");
+              curCg.setLat("");
+              curCg.setLng("");
+          }
+          cgList.add(curCg);
+          adapter.notifyDataSetChanged();
+          curCg.save();
+          parent.save();
+      }
+    }
     private void showDiyaDialog() {
         final AlertDialog dlg = new AlertDialog.Builder(this).create();
         dlg.show();
@@ -419,35 +428,53 @@ public class CatagoryTwoActivity extends Activity {
         bitmapList.add(bmp10);
         ListDialogAdapter adapter = new ListDialogAdapter(this, contentList, bitmapList, -1);
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> p, View view,
                                     int position, long id) {
-
                 curCg = new CatagoryTwo();
                 curCg.setParentId(parent.getId());
                 curCg.setCode(parent.nextChildCode());
                 curCg.setPersonName(parent.getPersonName());
                 curCg.setType(contentList.get(position));
                 curCg.setDestPath(parent.getFolderPath());
+//判断如果数据存在
+//                for (int i=0;i<cgList.size();i++){
+//                    if (p.getItemAtPosition(position).equals(cgList.get(i).getType())){
+//                        new MyAlertDialog(CatagoryTwoActivity.this, "提示", "文件夹已经存在，是否需要在建立!", "取消", "确定", new MyAlertDialog.CallAlertListerent() {
+//                            @Override
+//                            public void rightBtnListerent() {
+                                Intent intent = new Intent(CatagoryTwoActivity.this, CatagoryThreeActivity.class);
+                                intent.putExtra("CatagoryTwo", curCg);
+                               CatagoryTwoActivity.this.startActivityForResult(intent, REQUEST_CATAGORY_THREE);
 
-                Intent intent = new Intent(CatagoryTwoActivity.this, CatagoryThreeActivity.class);
-                intent.putExtra("CatagoryTwo", curCg);
-                CatagoryTwoActivity.this.startActivityForResult(intent, REQUEST_CATAGORY_THREE);
+                       //     }
+
+//                            @Override
+//                            public void leftBtnListerent() {
+//
+//                            }
+//                        }).show();
+//                    }else if (!p.getItemAtPosition(position).equals(cgList.get(i).getType())){
+                     //   Intent intent1 = new Intent(CatagoryTwoActivity.this, CatagoryThreeActivity.class);
+                     //   intent1.putExtra("CatagoryTwo", curCg);
+                     //  CatagoryTwoActivity.this.startActivityForResult(intent1, REQUEST_CATAGORY_THREE_DATA);
+                      //  dlg.cancel();
+                 //   }
+
+             //   }
 
                 dlg.cancel();
             }
 
         });
     }
+    //删除功能
     private void showPopInfo() {
         if (popInfo != null && popInfo.isShowing()) {
             return;
         }
-
         View popInfoView = getLayoutInflater().inflate(R.layout.popup_info, null);
-
         popInfo = new PopupWindow(popInfoView, LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT, true);
         popInfo.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
